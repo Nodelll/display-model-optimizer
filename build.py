@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent
 DEPS = ROOT / "build" / "deps"
 CLASSES = ROOT / "build" / "classes"
 TEST_CLASSES = ROOT / "build" / "test-classes"
-VERSION = "0.5.1+mc26.3"
+VERSION = "0.6.0+mc26.3"
 DEPENDENCIES = [
     ("fabric-loader.jar", "https://maven.fabricmc.net/net/fabricmc/fabric-loader/0.19.5/fabric-loader-0.19.5.jar",
      "93044e4dd46de5d8136701292f05e868da096d2c9fddb4793e4fdbcc63efc695"),
@@ -31,6 +31,8 @@ DEPENDENCIES = [
      "9d09cf4819de83dfcd38bcb212d5f2227131791cef3abbfca3321d6fb2b9a64d"),
     ("entityculling.jar", "https://cdn.modrinth.com/data/NNAgCjsB/versions/X1g3VhTx/entityculling-fabric-1.11.3-mc26.3.jar",
      "d2f80514ee3382b1fa7afda4df762df50743226e3cd320b829ee507357aeafbc"),
+    ("gson.jar", "https://libraries.minecraft.net/com/google/code/gson/gson/2.14.0/gson-2.14.0.jar",
+     "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"),
 ]
 
 
@@ -88,6 +90,8 @@ def main():
                             "dev.nodelll.displaymodeloptimizer.SettingsTest"], check=True)
     subprocess.run(java() + ["-cp", str(TEST_CLASSES) + os.pathsep + str(CLASSES) + os.pathsep + classpath,
                             "dev.nodelll.displaymodeloptimizer.BoundsTest"], check=True)
+    subprocess.run(java() + ["-cp", str(TEST_CLASSES) + os.pathsep + str(CLASSES) + os.pathsep + classpath,
+                            "dev.nodelll.displaymodeloptimizer.GitHubReleaseFeedTest"], check=True)
     output = ROOT / "build" / "libs" / ("display-model-optimizer-" + VERSION + ".jar")
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "w") as archive:
@@ -107,7 +111,8 @@ def main():
         assert metadata["authors"] == ["Nodelll"]
         assert metadata["environment"] == "client"
         assert metadata["depends"]["minecraft"] == "26.3"
-        assert all(not name.startswith(("net/minecraft/", "org/spongepowered/", "it/unimi/", "com/terraformersmc/", "dev/tr7zw/", "com/logisticscraft/"))
+        assert metadata["version"] == VERSION
+        assert all(not name.startswith(("net/minecraft/", "org/spongepowered/", "it/unimi/", "com/terraformersmc/", "com/google/", "dev/tr7zw/", "com/logisticscraft/"))
                    for name in archive.namelist())
         assert not any("Test.class" in name for name in archive.namelist())
     print("Built:", output)

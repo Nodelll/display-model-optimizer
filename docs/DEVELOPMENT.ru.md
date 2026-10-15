@@ -2,13 +2,13 @@
 
 Автор: **Nodelll**. Клиентский мод для Fabric Loader 0.19.5 и новее, Java 25.
 
-Версия **0.5.1** использует название **Display Model Optimizer** во всех идентификаторах, Java-пакетах, ресурсах, настройках и сборочных файлах. Мод оптимизирует отрисовку сущностей `item_display` и `block_display` в одиночных мирах и на серверах. Дальность по умолчанию — **18 блоков**; доступны кэш моделей блоков, ускоренный поиск групп отрисовки и скрытие за непрозрачными блоками через Entity Culling.
+Версия **0.6.0** использует название **Display Model Optimizer** во всех идентификаторах, Java-пакетах, ресурсах, настройках и сборочных файлах. Мод оптимизирует отрисовку сущностей `item_display` и `block_display` в одиночных мирах и на серверах. Дальность по умолчанию — **18 блоков**; доступны кэш моделей блоков, ускоренный поиск групп отрисовки и скрытие за непрозрачными блоками через Entity Culling.
 
 ## Установка
 
-1. Удалить предыдущий JAR Display Model Optimizer из `mods` и поместить туда `display-model-optimizer-0.5.1+mc26.3.jar`.
+1. Удалить предыдущий JAR Display Model Optimizer из `mods` и поместить туда `display-model-optimizer-0.6.0+mc26.3.jar`.
 2. Перезапустить Minecraft.
-3. Проверить наличие Display Model Optimizer 0.5.1 в Mod Menu или строки `[Display Model Optimizer] 0.5.1+mc26.3` в `logs/latest.log`.
+3. Проверить наличие Display Model Optimizer 0.6.0 в Mod Menu или строки `[Display Model Optimizer] 0.6.0+mc26.3` в `logs/latest.log`.
 
 Установка выполняется на клиенте. Используются Fabric Loader и fastutil, который уже входит в Minecraft.
 

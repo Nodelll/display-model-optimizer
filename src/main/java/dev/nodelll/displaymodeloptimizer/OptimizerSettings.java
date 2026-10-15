@@ -38,7 +38,7 @@ public final class OptimizerSettings {
 
     public static void logStartup() {
         LOG.log(System.Logger.Level.INFO,
-                "[Display Model Optimizer] 0.5.1+mc26.3 by Nodelll: " + current);
+                "[Display Model Optimizer] 0.6.0+mc26.3 by Nodelll: " + current);
     }
 
     private static SettingsValues load() {

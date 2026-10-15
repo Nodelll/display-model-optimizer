@@ -1,6 +1,6 @@
 {
   "mod": "Display Model Optimizer",
-  "version": "0.5.1+mc26.3",
+  "version": "0.6.0+mc26.3",
   "author": "Nodelll",
   "target": {
     "minecraft": "26.3",
@@ -8,14 +8,14 @@
     "runtime_java_minimum": 25,
     "compiled_release": 25
   },
-  "jar_sha256": "546f75dbfc639880eb72a32fce97041b654816ad02e3831e973339990820ae90",
+  "jar_sha256": "41423694bd0076c7389e149d55b512d020773412a3cec5b8cb174d5010cd999e",
   "official_client_sha1": "e877b6a07acd633fb3bb475002175cec036e7b87",
   "checks": {
     "lookup_assertions": 180346,
     "model_cache_and_distance_assertions": 28,
     "settings_assertions": 54,
     "modmenu_api_version": "21.0.0_for_minecraft_26.3",
-    "modmenu_entrypoint_and_factory": "passed",
+    "modmenu_entrypoint_and_factory": "passed_again_for_0.6.0",
     "legacy_settings_migration": "passed",
     "settings_round_trip_and_unknown_utf8_property_preservation": "passed",
     "invalid_draft_rejection_and_cancel_reset_isolation": "passed",
@@ -38,12 +38,18 @@
     "bounds_owned_by_entity_and_safely_published": "passed",
     "resource_reload_invalidation": "passed",
     "glass_tinted_glass_barrier_transparency": "official_26.3_block_registration_has_noOcclusion; EntityCulling_1.11.3_provider_uses_isSolidRender",
-    "modmenu_localized_description_and_summary": "24_matching_keys_per_language; single_sentence_ru_ru_and_en_us; russian_metadata_fallback; official_21.0.0_translation_keys_confirmed",
+    "modmenu_localized_description_and_summary": "39 matching keys per language; name, single-sentence summary/description and custom links",
     "modmenu_icon": "256x256_transparent_png_packaged_at_fabric_metadata_icon_path; 64px_preview_inspected",
     "neutral_branding_and_scope": "Display Model Optimizer; item_display and block_display stated in both languages; neutral terminology throughout the UI",
     "rebranding_configuration_compatibility": "new display_model_optimizer ID and Java package; new display-model-optimizer.properties path; prior settings discovered by a unique complete key set",
     "configuration_transfer": "passed: all preferences and unknown UTF-8 properties preserved; source unchanged; current file takes priority; ambiguous, incomplete and malformed unrelated files handled conservatively",
-    "complete_identifier_rename": "passed: source paths, text, JAR entry names and uncompressed bytes contain no previous branding"
+    "complete_identifier_rename": "passed: source paths, text, JAR entry names and uncompressed bytes contain no previous branding",
+    "github_release_feed_assertions": 33,
+    "modmenu_update_checker_registration": "passed_against_official_21.0.0_without_client_or_network_initialization",
+    "modmenu_own_configuration_only": "passed: no provided factories/checkers or modpack badges for other mods",
+    "modmenu_project_contacts_and_links": "packaged homepage, sources, issues, downloads, changelog and guide; matching translation keys",
+    "modmenu_config_pages": "General, Advanced, About; all seven existing properties retained; full in-game screen not launched",
+    "github_update_policy": "semantic version comparison; exact Minecraft binary matching; stable/beta/alpha preferences; drafts, incomplete uploads, invalid payloads and other project URLs rejected"
   },
   "limitations": [
     "Full Minecraft client with the user modpack was not launched.",
@@ -56,7 +62,8 @@
     "Unknown or animated item-model bounds and moving entity anchors retain visibility for conservative behavior.",
     "Full occlusion behavior with the user server resource pack and shader pack must be tested in the client.",
     "The Mod Menu icon and translated strings were verified in packaged resources and the real 21.0.0 API bytecode; the full Mod Menu screen was not opened in a running client.",
-    "Automatic settings transfer requires a unique sibling .properties file with all seven recognized keys; ambiguous or incomplete configurations can be renamed manually before first launch."
+    "Automatic settings transfer requires a unique sibling .properties file with all seven recognized keys; ambiguous or incomplete configurations can be renamed manually before first launch.",
+    "GitHub update selection is covered by offline fixtures; the full Mod Menu notification and three settings tabs still need an in-game check."
   ],
   "validation_scope": {
     "rerun_for_0.5.1": [
@@ -73,6 +80,16 @@
     "mod_id": "display_model_optimizer",
     "java_package": "dev.nodelll.displaymodeloptimizer",
     "config_path": "config/display-model-optimizer.properties",
-    "default_display_render_distance_blocks": 18
+    "default_display_render_distance_blocks": 18,
+    "rerun_for_0.6.0": [
+      "DrawLookupIndexTest",
+      "ModelCacheTest",
+      "SettingsTest",
+      "BoundsTest",
+      "GitHubReleaseFeedTest",
+      "ModMenuSmokeTest against official API 21.0.0",
+      "Packaged metadata, translations, links, optional dependencies, version and identifier audit"
+    ],
+    "historical_bytecode_checks": "0.5.1 standalone mixin verification retained; rendering mixin sources are unchanged in 0.6.0"
   }
 }

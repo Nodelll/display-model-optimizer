@@ -1,11 +1,16 @@
 {
   "schemaVersion": 1,
   "id": "display_model_optimizer",
-  "version": "0.5.1+mc26.3",
+  "version": "0.6.0+mc26.3",
   "name": "Display Model Optimizer",
   "description": "Оптимизирует отрисовку сущностей item_display и block_display с помощью кэширования моделей блоков, ограничения дальности и скрытия за блоками через Entity Culling.",
   "icon": "assets/display_model_optimizer/icon.png",
   "authors": ["Nodelll"],
+  "contact": {
+    "homepage": "https://github.com/Nodelll/display-model-optimizer",
+    "sources": "https://github.com/Nodelll/display-model-optimizer",
+    "issues": "https://github.com/Nodelll/display-model-optimizer/issues"
+  },
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
@@ -18,5 +23,15 @@
     "minecraft": "26.3",
     "java": ">=25"
   },
-  "suggests": {"modmenu": ">=21.0.0", "entityculling": ">=1.11.0"}
+  "suggests": {"modmenu": ">=21.0.0", "entityculling": ">=1.11.0"},
+  "custom": {
+    "modmenu": {
+      "links": {
+        "display_model_optimizer.link.releases": "https://github.com/Nodelll/display-model-optimizer/releases",
+        "display_model_optimizer.link.changelog": "https://github.com/Nodelll/display-model-optimizer/blob/main/CHANGELOG.md",
+        "display_model_optimizer.link.guide": "https://github.com/Nodelll/display-model-optimizer#installation-and-settings"
+      },
+      "update_checker": true
+    }
+  }
 }

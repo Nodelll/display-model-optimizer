@@ -16,7 +16,7 @@ Display Model Optimizer reduces repeated rendering work for `item_display` and `
 - **Faster draw-group lookups:** reduces the cost of grouping models for rendering.
 - **Configurable display distance:** an additional render-distance limit of **18 blocks by default**.
 - **Entity Culling integration:** supplies model bounds so fully occluded displays can be hidden behind opaque blocks.
-- **Mod Menu settings:** English and Russian configuration screens with changes applied after saving.
+- **Mod Menu integration:** English/Russian settings tabs, project and download links, dependency status and compatible GitHub update notifications.
 
 ## Requirements
 
@@ -39,6 +39,12 @@ Install the mod on the **client**. Model caching, draw lookups and the distance 
 **The default maximum display range is 18 blocks.** Increase `displayRenderDistance` for more distant models, or set it to **0** to keep the original game/server range. The limit applies to both `item_display` and `block_display`.
 
 The occlusion option uses the installed Entity Culling mod. Visibility follows its transparency rules; full opaque blocks can hide models, while glass and invisible barriers do not count as opaque walls. Animated item models, moving display entities and models with unknown bounds may remain visible.
+
+### Mod Menu
+
+The **General** tab contains the optimization switches and display distance; **Advanced** contains cache size and draw-index tuning; **About** shows versions, Entity Culling availability and project links. Tooltips explain every setting. Changes stay in a draft across tabs and window resizing until **Save**; **Cancel** or Escape discards them, and **Reset** restores defaults in the draft.
+
+The mod card includes translated name/summary/description, the icon, Nodelll as author, the MIT license, the automatic Client badge, website/source/issue links and additional download, changelog and guide links. The custom update checker uses public GitHub releases, filters binaries by the running Minecraft version, respects Mod Menu's enabled/disabled setting and release-channel preference, and opens the release page when selected. It does not install updates. Offline or rate-limited checks do not stop the game. See [Mod Menu integration details](docs/MOD_MENU.md).
 
 ## Build from source
 

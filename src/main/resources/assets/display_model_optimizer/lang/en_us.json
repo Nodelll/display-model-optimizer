@@ -1,4 +1,5 @@
 {
+  "modmenu.nameTranslation.display_model_optimizer": "Display Model Optimizer",
   "modmenu.descriptionTranslation.display_model_optimizer": "Optimizes item_display and block_display rendering with block model caching, a distance limit, and occlusion culling through Entity Culling.",
   "modmenu.summaryTranslation.display_model_optimizer": "Optimizes item_display and block_display rendering with block model caching, a distance limit, and occlusion culling through Entity Culling.",
   "display_model_optimizer.config.title": "Display Model Optimizer — Settings",
@@ -20,7 +21,21 @@
   "display_model_optimizer.config.save": "Save",
   "display_model_optimizer.config.reset": "Reset",
   "display_model_optimizer.config.applies": "Changes apply after saving",
-  "display_model_optimizer.config.invalid": "Correct the highlighted values",
+  "display_model_optimizer.config.invalid": "Check values on all settings tabs",
   "display_model_optimizer.config.save_failed": "Could not save. Details are in the log",
-  "display_model_optimizer.config.session_disabled": "Verification disabled optimization. Restart the game"
+  "display_model_optimizer.config.session_disabled": "Verification disabled optimization. Restart the game",
+  "display_model_optimizer.config.page.general": "General",
+  "display_model_optimizer.config.page.advanced": "Advanced",
+  "display_model_optimizer.config.page.about": "About",
+  "display_model_optimizer.about.version": "Version: %s",
+  "display_model_optimizer.about.author": "Author: %s",
+  "display_model_optimizer.about.ec_present": "Entity Culling %s: available",
+  "display_model_optimizer.about.ec_absent": "Entity Culling: not installed",
+  "display_model_optimizer.about.modmenu": "Mod Menu: %s",
+  "display_model_optimizer.link.project": "Project page",
+  "display_model_optimizer.link.issues": "Report a bug",
+  "display_model_optimizer.link.releases": "Downloads",
+  "display_model_optimizer.link.changelog": "Changelog",
+  "display_model_optimizer.link.guide": "User guide",
+  "display_model_optimizer.update.available": "Display Model Optimizer %s is available"
 }

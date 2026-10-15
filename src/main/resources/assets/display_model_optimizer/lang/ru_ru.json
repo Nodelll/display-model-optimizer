@@ -1,4 +1,5 @@
 {
+  "modmenu.nameTranslation.display_model_optimizer": "Display Model Optimizer",
   "modmenu.descriptionTranslation.display_model_optimizer": "Оптимизирует отрисовку сущностей item_display и block_display с помощью кэширования моделей блоков, ограничения дальности и скрытия за блоками через Entity Culling.",
   "modmenu.summaryTranslation.display_model_optimizer": "Оптимизирует отрисовку сущностей item_display и block_display с помощью кэширования моделей блоков, ограничения дальности и скрытия за блоками через Entity Culling.",
   "display_model_optimizer.config.title": "Display Model Optimizer — настройки",
@@ -20,7 +21,21 @@
   "display_model_optimizer.config.save": "Сохранить",
   "display_model_optimizer.config.reset": "Сбросить",
   "display_model_optimizer.config.applies": "Изменения применятся после сохранения",
-  "display_model_optimizer.config.invalid": "Исправьте выделенные значения",
+  "display_model_optimizer.config.invalid": "Проверьте значения на вкладках",
   "display_model_optimizer.config.save_failed": "Не удалось сохранить. Подробности в журнале",
-  "display_model_optimizer.config.session_disabled": "Оптимизация отключена проверкой. Перезапустите игру"
+  "display_model_optimizer.config.session_disabled": "Оптимизация отключена проверкой. Перезапустите игру",
+  "display_model_optimizer.config.page.general": "Основное",
+  "display_model_optimizer.config.page.advanced": "Дополнительно",
+  "display_model_optimizer.config.page.about": "О моде",
+  "display_model_optimizer.about.version": "Версия: %s",
+  "display_model_optimizer.about.author": "Автор: %s",
+  "display_model_optimizer.about.ec_present": "Entity Culling %s: доступен",
+  "display_model_optimizer.about.ec_absent": "Entity Culling: не установлен",
+  "display_model_optimizer.about.modmenu": "Mod Menu: %s",
+  "display_model_optimizer.link.project": "Страница проекта",
+  "display_model_optimizer.link.issues": "Сообщить об ошибке",
+  "display_model_optimizer.link.releases": "Скачать мод",
+  "display_model_optimizer.link.changelog": "История изменений",
+  "display_model_optimizer.link.guide": "Инструкция",
+  "display_model_optimizer.update.available": "Доступен Display Model Optimizer %s"
 }
