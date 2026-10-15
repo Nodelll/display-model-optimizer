@@ -14,13 +14,15 @@ public final class SettingsDraft {
     }
 
     private final EnumMap<NumberOption, String> numbers = new EnumMap<>(NumberOption.class);
-    private boolean enabled, cacheModels, occlusion, offscreen;
+    private boolean enabled, cacheModels, occlusion, offscreen, cacheGeometry;
 
     public SettingsDraft(SettingsValues values) { restore(values); }
     public boolean enabled() { return enabled; }
     public void enabled(boolean value) { enabled = value; }
     public boolean cacheModels() { return cacheModels; }
     public void cacheModels(boolean value) { cacheModels = value; }
+    public boolean cacheGeometry() { return cacheGeometry; }
+    public void cacheGeometry(boolean value) { cacheGeometry = value; }
     public boolean occlusion() { return occlusion; }
     public void occlusion(boolean value) { occlusion = value; }
     public boolean offscreen() { return offscreen; }
@@ -32,6 +34,7 @@ public final class SettingsDraft {
     private void restore(SettingsValues values) {
         enabled = values.enabled();
         cacheModels = values.cacheBlockDisplayModels();
+        cacheGeometry = values.cacheBlockDisplayGeometry();
         occlusion = values.cullOccludedDisplays();
         offscreen = values.cullOffscreenDisplays();
         numbers.put(NumberOption.DISTANCE, Integer.toString(values.displayRenderDistance()));
@@ -54,7 +57,7 @@ public final class SettingsDraft {
     public SettingsValues values() {
         if (!isValid()) throw new IllegalStateException("Invalid settings draft");
         return new SettingsValues(enabled, number(NumberOption.MINIMUM_SIZE), number(NumberOption.VERIFY_EVERY),
-                cacheModels, number(NumberOption.MODEL_LIMIT), number(NumberOption.DISTANCE), occlusion, offscreen);
+                cacheModels, number(NumberOption.MODEL_LIMIT), number(NumberOption.DISTANCE), occlusion, offscreen, cacheGeometry);
     }
 
     private int number(NumberOption option) { return Integer.parseInt(text(option)); }

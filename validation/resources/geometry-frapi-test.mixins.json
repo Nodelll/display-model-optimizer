@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "net.fabricmc.fabric.mixin.client.renderer",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "block.model.BlockStateModelMixin",
+    "block.model.BlockStateModelPartMixin",
+    "block.render.BlockModelRenderStateMixin",
+    "block.render.BlockStateModelWrapperMixin"
+  ],
+  "injectors": {"defaultRequire": 1}
+}

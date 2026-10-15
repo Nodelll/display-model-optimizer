@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0 — 2026-10-15
+
+- Add an optional, bounded cache of converted `block_display` geometry across frames using Fabric Renderer API geometry keys and renderer-owned immutable meshes.
+- Retain current tint, lighting, transform and submission paths; bypass models without keys and oversized meshes. Invalidate on resource/world/settings/graphics changes.
+- Add an independent Advanced settings switch and migrate eight-option configurations without losing preferences; retain the benchmark helper's eight-argument constructor.
+- Verify the real Fabric overwrite together with DMO and packed Sodium mesh parity, in addition to the existing checks. Run optional-dependency and Entity Culling transformation checks in CI.
+- Derive the startup log version from mod metadata.
+- Publish 0.8.0 as a stable GitHub release, with the same production classes as the benchmarked 0.8.0-alpha.1 build.
+- Add complete 48-phase in-game benchmark results with and without Complementary Unbound r5.9.3, High preset, on Ryzen 5 5600 / RTX 3070 at 1920 × 1080.
+- Record isolated optimization comparisons, per-kind culling limitations, the per-frame cache BYPASS on the tested FRAPI/Sodium path, and frame-time caveats. Retain the 0.7.1 results as historical documentation.
+
 ## 0.7.1 — 2026-10-15
 
 - Fix the Mod Menu settings crash `IllegalStateException: Can only blur once per frame` on Minecraft 26.3 by letting the game extract the screen background once.

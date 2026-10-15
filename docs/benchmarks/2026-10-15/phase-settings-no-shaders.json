@@ -1,0 +1,674 @@
+[
+  {
+    "phase": "01_combined_front_off_1",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "02_combined_front_full_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "03_combined_front_full_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "04_combined_front_off_2",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "05_combined_back_off_1",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "06_combined_back_full_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "07_combined_back_full_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "08_combined_back_off_2",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "09_combined_wall_off_1",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "10_combined_wall_full_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "11_combined_wall_full_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "12_combined_wall_off_2",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "13_combined_glass_off_1",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "14_combined_glass_full_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "15_combined_glass_full_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 32,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "16_combined_glass_off_2",
+    "settings": {
+      "enabled": false,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "17_draw_index_front_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "18_draw_index_front_index_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 0,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "19_draw_index_front_index_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 0,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "20_draw_index_front_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "21_frame_cache_front_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "22_frame_cache_front_frame_cache_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "23_frame_cache_front_frame_cache_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": true,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "24_frame_cache_front_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "25_geometry_repeated_front_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "26_geometry_repeated_front_geometry_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "27_geometry_repeated_front_geometry_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "28_geometry_repeated_front_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "29_geometry_varied_front_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "30_geometry_varied_front_geometry_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "31_geometry_varied_front_geometry_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "32_geometry_varied_front_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "33_geometry_changing_front_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "34_geometry_changing_front_geometry_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "35_geometry_changing_front_geometry_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": true
+    }
+  },
+  {
+    "phase": "36_geometry_changing_front_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "37_frustum_back_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "38_frustum_back_frustum_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "39_frustum_back_frustum_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": true,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "40_frustum_back_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "41_occlusion_wall_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "42_occlusion_wall_occlusion_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "43_occlusion_wall_occlusion_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": true,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "44_occlusion_wall_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "45_distance_distance_base_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "46_distance_distance_range18_1",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 18,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "47_distance_distance_range18_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 18,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  },
+  {
+    "phase": "48_distance_distance_base_2",
+    "settings": {
+      "enabled": true,
+      "minimumListSize": 65536,
+      "verifyEvery": 256,
+      "cacheBlockDisplayModels": false,
+      "modelCacheLimit": 1024,
+      "displayRenderDistance": 0,
+      "cullOccludedDisplays": false,
+      "cullOffscreenDisplays": false,
+      "cacheBlockDisplayGeometry": false
+    }
+  }
+]

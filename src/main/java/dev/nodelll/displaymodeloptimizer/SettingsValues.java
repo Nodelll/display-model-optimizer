@@ -5,13 +5,23 @@ import java.util.Set;
 
 public record SettingsValues(boolean enabled, int minimumListSize, int verifyEvery,
                              boolean cacheBlockDisplayModels, int modelCacheLimit, int displayRenderDistance,
-                             boolean cullOccludedDisplays, boolean cullOffscreenDisplays) {
-    public static final SettingsValues DEFAULTS = new SettingsValues(true, 32, 256, true, 1024, 18, true, true);
+                             boolean cullOccludedDisplays, boolean cullOffscreenDisplays,
+                             boolean cacheBlockDisplayGeometry) {
+    public static final SettingsValues DEFAULTS = new SettingsValues(true, 32, 256, true, 1024, 18, true, true, true);
     public static final Set<String> KEYS = Set.of("enabled", "minimumListSize", "verifyEvery",
-            "cacheBlockDisplayModels", "modelCacheLimit", "displayRenderDistance", "cullOccludedDisplays", "cullOffscreenDisplays");
+            "cacheBlockDisplayModels", "modelCacheLimit", "displayRenderDistance", "cullOccludedDisplays", "cullOffscreenDisplays",
+            "cacheBlockDisplayGeometry");
     // Keep recognizing complete configurations written before the off-screen option existed.
     public static final Set<String> TRANSFER_KEYS = Set.of("enabled", "minimumListSize", "verifyEvery",
             "cacheBlockDisplayModels", "modelCacheLimit", "displayRenderDistance", "cullOccludedDisplays");
+
+    // Retain the constructor used by existing benchmark helpers and older integrations.
+    public SettingsValues(boolean enabled, int minimumListSize, int verifyEvery,
+                          boolean cacheBlockDisplayModels, int modelCacheLimit, int displayRenderDistance,
+                          boolean cullOccludedDisplays, boolean cullOffscreenDisplays) {
+        this(enabled, minimumListSize, verifyEvery, cacheBlockDisplayModels, modelCacheLimit, displayRenderDistance,
+                cullOccludedDisplays, cullOffscreenDisplays, true);
+    }
 
     public SettingsValues(boolean enabled, int minimumListSize, int verifyEvery,
                           boolean cacheBlockDisplayModels, int modelCacheLimit, int displayRenderDistance,
@@ -36,7 +46,8 @@ public record SettingsValues(boolean enabled, int minimumListSize, int verifyEve
         return new SettingsValues(bool(values, "enabled", true), integer(values, "minimumListSize", 32),
                 integer(values, "verifyEvery", 256), bool(values, "cacheBlockDisplayModels", true),
                 integer(values, "modelCacheLimit", 1024), integer(values, "displayRenderDistance", 18),
-                bool(values, "cullOccludedDisplays", true), bool(values, "cullOffscreenDisplays", true));
+                bool(values, "cullOccludedDisplays", true), bool(values, "cullOffscreenDisplays", true),
+                bool(values, "cacheBlockDisplayGeometry", true));
     }
 
     public void writeTo(Properties values) {
@@ -48,6 +59,7 @@ public record SettingsValues(boolean enabled, int minimumListSize, int verifyEve
         values.setProperty("displayRenderDistance", Integer.toString(displayRenderDistance));
         values.setProperty("cullOccludedDisplays", Boolean.toString(cullOccludedDisplays));
         values.setProperty("cullOffscreenDisplays", Boolean.toString(cullOffscreenDisplays));
+        values.setProperty("cacheBlockDisplayGeometry", Boolean.toString(cacheBlockDisplayGeometry));
     }
 
     private static int integer(Properties values, String key, int fallback) {

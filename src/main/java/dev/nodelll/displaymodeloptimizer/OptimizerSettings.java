@@ -27,6 +27,7 @@ public final class OptimizerSettings {
                 || current.cullOffscreenDisplays() != values.cullOffscreenDisplays())
             DisplayOcclusion.invalidateAll();
         current = values;
+        GeometryCacheLifecycle.invalidate();
     }
 
     public static synchronized void disableAfterMismatch() {
@@ -39,7 +40,9 @@ public final class OptimizerSettings {
 
     public static void logStartup() {
         LOG.log(System.Logger.Level.INFO,
-                "[Display Model Optimizer] 0.7.0+mc26.3 by Nodelll: " + current);
+                "[Display Model Optimizer] " + FabricLoader.getInstance().getModContainer(ProjectLinks.MOD_ID)
+                        .map(mod -> mod.getMetadata().getVersion().getFriendlyString()).orElse("unknown")
+                        + " by Nodelll: " + current);
     }
 
     private static SettingsValues load() {

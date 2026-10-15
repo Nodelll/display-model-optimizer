@@ -23,6 +23,7 @@ public final class SettingsTest {
             check(!migrated.enabled() && migrated.minimumListSize() == 64 && migrated.verifyEvery() == 0, "Old preferences retained");
             check(migrated.cacheBlockDisplayModels() && migrated.displayRenderDistance() == 18, "New defaults appended");
             check(migrated.cullOffscreenDisplays(), "Off-screen culling defaults on for an existing configuration");
+            check(migrated.cacheBlockDisplayGeometry(), "Existing configuration gains persistent geometry caching");
             Properties contents = properties(file);
             check(contents.keySet().containsAll(SettingsValues.KEYS), "Migration writes all known keys");
             check("Сохранить ё".equals(contents.getProperty("customNote")), "Unknown UTF-8 property preserved");
@@ -47,6 +48,10 @@ public final class SettingsTest {
             check(!draft.values().cullOffscreenDisplays() && wanted.cullOffscreenDisplays(), "Off-screen edits remain local to the draft");
             SettingsStore.save(file, draft.values());
             check(!SettingsStore.load(file).cullOffscreenDisplays(), "Off-screen switch survives save and reload");
+            draft.cacheGeometry(false);
+            check(!draft.values().cacheBlockDisplayGeometry() && wanted.cacheBlockDisplayGeometry(), "Geometry switch stays local until save");
+            SettingsStore.save(file, draft.values());
+            check(!SettingsStore.load(file).cacheBlockDisplayGeometry(), "Geometry switch survives save and reload");
             SettingsStore.save(file, wanted);
             for (String invalid : new String[]{"", "-1", "3.2", "x", "9999999", "1025"}) {
                 draft.text(NumberOption.DISTANCE, invalid);
@@ -66,6 +71,7 @@ public final class SettingsTest {
             check(draft.values().equals(SettingsValues.DEFAULTS), "Reset affects all draft fields");
             check(draft.values().cullOccludedDisplays(), "Reset restores display occlusion default");
             check(draft.values().cullOffscreenDisplays(), "Reset restores off-screen culling default");
+            check(draft.values().cacheBlockDisplayGeometry(), "Reset restores geometry caching");
             check(SettingsStore.load(file).equals(wanted), "Reset draft does not save implicitly");
 
             Properties malformedNumbers = new Properties();
@@ -97,6 +103,7 @@ public final class SettingsTest {
                     && !index.usesSettings(32, 0), "Changed lookup options require a new index");
             checkRenamedConfigMigration(folder);
             checkSevenOptionUpgrade(folder);
+            checkEightOptionUpgrade(folder);
         } finally {
             try (var paths = Files.walk(folder)) {
                 for (Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) Files.delete(path);
@@ -164,7 +171,7 @@ public final class SettingsTest {
                 "Complete seven-option file transfers preferences and appends off-screen default");
         check(java.util.Arrays.equals(original, Files.readAllBytes(oldFile)), "Seven-option transfer retains original source");
         check("Сохранить ё".equals(properties(file).getProperty("customNote")), "Seven-option transfer preserves unknown UTF-8 data");
-        check(properties(file).keySet().containsAll(SettingsValues.KEYS), "Upgraded configuration contains all eight options");
+        check(properties(file).keySet().containsAll(SettingsValues.KEYS), "Upgraded configuration contains every option");
         for (boolean offscreen : new boolean[]{false, true}) for (boolean occlusion : new boolean[]{false, true}) {
             SettingsValues wanted = new SettingsValues(true, 64, 512, false, 2048, 48, occlusion, offscreen);
             SettingsStore.save(file, wanted);
@@ -180,5 +187,20 @@ public final class SettingsTest {
     private static void check(boolean valid, String message) {
         assertions++;
         if (!valid) throw new AssertionError(message);
+    }
+
+    private static void checkEightOptionUpgrade(Path folder) throws Exception {
+        Path file = folder.resolve("eight-options.properties");
+        SettingsValues old = new SettingsValues(false, 96, 512, false, 4096, 0, false, false);
+        SettingsStore.save(file, old);
+        Properties contents = properties(file);
+        contents.remove("cacheBlockDisplayGeometry");
+        contents.setProperty("customNote", "Сохранить ё");
+        try (var writer = Files.newBufferedWriter(file)) { contents.store(writer, "0.7.1 configuration"); }
+        SettingsValues migrated = SettingsStore.load(file);
+        check(migrated.equals(old), "Eight-option upgrade preserves every old preference");
+        check(migrated.cacheBlockDisplayGeometry(), "Eight-option upgrade adds geometry cache default");
+        check("Сохранить ё".equals(properties(file).getProperty("customNote")), "Eight-option upgrade preserves unknown data");
+        check(properties(file).keySet().containsAll(SettingsValues.KEYS), "Eight-option upgrade writes the ninth key");
     }
 }

@@ -13,7 +13,7 @@
   "display_model_optimizer.option.distance": "Display render distance",
   "display_model_optimizer.option.distance.tooltip": "0–1024 blocks, default: 18. 0 keeps the original distance. For example, 18 hides item_display and block_display beyond 18 blocks; they appear as you approach. Text displays retain their original range.",
   "display_model_optimizer.option.model_limit": "Model cache limit",
-  "display_model_optimizer.option.model_limit.tooltip": "0–16384 model combinations per frame. Default: 1024. 0 disables model storage.",
+  "display_model_optimizer.option.model_limit.tooltip": "0–16384 model combinations. Default: 1024. Limits the per-frame model cache and persistent geometry cache separately. 0 disables both.",
   "display_model_optimizer.option.minimum_size": "Draw index threshold",
   "display_model_optimizer.option.minimum_size.tooltip": "0–65536 states. Default: 32. Small groups retain the original lookup.",
   "display_model_optimizer.option.verify_every": "Verification interval",
@@ -39,5 +39,7 @@
   "display_model_optimizer.link.guide": "User guide",
   "display_model_optimizer.update.available": "Display Model Optimizer %s is available",
   "display_model_optimizer.option.offscreen": "Hide off-screen models",
-  "display_model_optimizer.option.offscreen.tooltip": "Use actual model bounds to skip item_display and block_display outside the camera view. Works without Entity Culling. Unknown or animated model bounds remain visible."
+  "display_model_optimizer.option.offscreen.tooltip": "Use actual model bounds to skip item_display and block_display outside the camera view. Works without Entity Culling. Unknown or animated model bounds remain visible.",
+  "display_model_optimizer.option.cache_geometry": "Persistent block geometry cache",
+  "display_model_optimizer.option.cache_geometry.tooltip": "Reuse converted block_display geometry across frames. Requires Fabric Renderer API 17.0.16+. Models without a geometry key use normal preparation. Clear on resource reload, world or graphics changes."
 }
