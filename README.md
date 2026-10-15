@@ -33,8 +33,6 @@ Install the mod on the **client**. Model caching, draw lookups and the distance 
 
 ## Installation and settings
 
-[Version 0.7.1](https://github.com/Nodelll/display-model-optimizer/releases/tag/v0.7.1) fixes the Minecraft 26.3 crash when opening DMO settings through Mod Menu (`Can only blur once per frame`).
-
 1. Download the JAR from [Releases](https://github.com/Nodelll/display-model-optimizer/releases).
 2. Remove the previous version from your instance's `mods` folder, place the new JAR there and restart Minecraft.
 3. Open **Mod Menu → Display Model Optimizer**, or edit `config/display-model-optimizer.properties` manually and restart the game.
