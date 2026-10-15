@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'dev.nodelll'
-version = '0.8.0-alpha.1+mc26.3'
+version = '0.8.0+mc26.3'
 
 tasks.register('prepareDependencies', Exec) {
     commandLine 'python3', 'build.py', '--deps-only'

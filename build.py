@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent
 DEPS = ROOT / "build" / "deps"
 CLASSES = ROOT / "build" / "classes"
 TEST_CLASSES = ROOT / "build" / "test-classes"
-VERSION = "0.8.0-alpha.1+mc26.3"
+VERSION = "0.8.0+mc26.3"
 DEPENDENCIES = [
     ("asm.jar", "https://maven.fabricmc.net/org/ow2/asm/asm/9.11/asm-9.11.jar",
      "5fe3b469b8646e5bc53a897840952d63b712d4923d2a7a26aebc585f1fec7676"),

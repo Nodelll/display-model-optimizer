@@ -1,6 +1,6 @@
 # Persistent geometry cache for block displays
 
-Experimental implementation in **0.8.0-alpha.1**, Minecraft **26.3**.
+Released in **0.8.0**, Minecraft **26.3**. The same production implementation was measured in the **0.8.0-alpha.1** test build before release.
 
 ## What it saves
 
@@ -48,12 +48,14 @@ CPU preparation timings use the actual Fabric `VanillaBlockModelPartEncoder` wit
 
 ## In-game comparison
 
-1. Install the test JAR in place of 0.7.1 and keep the same renderer, resource pack, resolution and other DMO settings.
+1. Install the 0.8.0 JAR and keep the same renderer, resource pack, resolution and other DMO settings.
 2. Use a scene with many visible `block_display` entities; keep the camera fixed. Set the extra distance limit to 0 so the same entities remain visible in both modes.
 3. Compare only `cacheBlockDisplayGeometry=false` and `true`, leaving the master switch on. Warm up each mode and use an **off → on → on → off** sequence with equal measurement times.
 4. Check opaque, translucent, tinted and animated block textures, transformed displays, changing block states, F3+T, world switches and settings changes. Repeat with the intended shader pack.
 
-The existing DMO Benchmark `quick` plan still measures the combined OFF/FULL difference. Its eight-argument settings constructor enables the new geometry-cache default, so that plan **does not isolate this feature**. Use the manual switch comparison above for an isolated test. No in-game FPS result is claimed for this experimental build yet.
+DMO Benchmark **1.1.0** provides `run geometry` and isolated geometry groups in `run all`. It keeps the per-frame cache disabled during these comparisons, toggles only the persistent cache, and separates FPS intervals from diagnostic counters. `quick` measures the combined OFF/FULL difference and does not isolate this feature. Set a fixed time and weather for further shader comparisons.
+
+Two completed 48-phase runs on 15 October 2026 used 300 block displays plus 300 item displays, Ryzen 5 5600 / RTX 3070, and 1920 × 1080. Isolated geometry-cache gains were **+6.1% / +4.7% / +4.6%** without shaders for repeated / varied / changing block states, and **+2.7% / +3.5% / +3.1%** with **Complementary Unbound r5.9.3, High preset**. The changing-state shader test had a lower mean phase 1% low despite higher average FPS. See [full measurements, diagnostics and limits](../README.md#performance-tests). These are synthetic-arena results, distinct from the CPU preparation microbenchmarks above.
 
 ## Sources
 

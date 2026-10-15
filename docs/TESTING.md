@@ -6,7 +6,7 @@ The current implementation targets Minecraft 26.3, Fabric Loader 0.19.5 or later
 
 Run `python3 build.py` with JDK 25. The build executes:
 
-| Check | Assertions in 0.8.0-alpha.1 |
+| Check | Assertions in 0.8.0 |
 | --- | ---: |
 | Draw lookup equivalence and fallback | 180346 |
 | Model cache ownership, lifetime and distance | 28 |
@@ -17,7 +17,7 @@ Run `python3 build.py` with JDK 25. The build executes:
 | Actual Minecraft screen background order, double-blur guard and 128 frame resets | 135 |
 | Persistent geometry cache: weighted LRU, capacity, randomized parity and lifecycle | 7365 |
 
-GitHub Actions runs this build and publishes the resulting JAR as a workflow artifact. This alpha branch does not publish a release automatically.
+GitHub Actions runs this build and publishes the resulting JAR as a workflow artifact. The authorized `Release 0.8.0:` commit on main runs a dependent publishing job only after build and renderer checks pass; it publishes stable `v0.8.0` with the tested JAR and its SHA-256 file.
 
 CI also runs `python3 validation/run_geometry_checks.py`. It downloads checksum-pinned validation dependencies, verifies existing transformations without Fabric Renderer API, repeats the checks alongside the real Entity Culling mixins, then applies the actual FRAPI wrapper overwrite and DMO geometry redirect together. Actual Sodium 0.9.2 meshes are used for 129 packed-output, metadata, caller-transform, random-seed, model-identity, invalidation and bypass assertions. No graphical client is started.
 
@@ -37,7 +37,9 @@ The bounds checks use the actual OcclusionCulling backend for opaque-wall, trans
 
 ## In-game validation
 
-A complete game launch and a controlled FPS comparison are still needed. Useful cases include:
+Two user-submitted complete **48-phase** runs on **15 October 2026** tested the same production classes in **0.8.0-alpha.1**, without shaders and with **Complementary Unbound r5.9.3, High preset**. Each completed all ten automatic in-game checks, including actual resource-reload invalidation. Full results, methodology, raw phase CSVs and limits are linked from the [README](../README.md#performance-tests). Release verification compares production class bytes with that measured build.
+
+These runs do not complete every manual scenario. Useful additional cases include:
 
 - Running with and without Entity Culling and Mod Menu.
 - Dense item and block displays, repeated block models and custom resource-pack models.
@@ -47,4 +49,4 @@ A complete game launch and a controlled FPS comparison are still needed. Useful 
 - Checking Mod Menu notifications with update checks enabled/disabled and with stable/beta/alpha preferences.
 - Testing both the normal renderer and the intended shader/mod combination.
 
-No fixed FPS increase or universal shader-pack compatibility is claimed.
+Known limits in the measured renderer path: the old per-frame snapshot cache is BYPASS, block model bounds are unavailable to DMO culling, the changing-block shader run has lower 1% low, and the benchmark did not freeze time/weather. No fixed FPS increase or universal shader-pack compatibility is claimed.

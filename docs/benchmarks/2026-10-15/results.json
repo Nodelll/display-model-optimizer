@@ -1,0 +1,3209 @@
+{
+  "date": "2026-10-15",
+  "measuredVersion": "0.8.0-alpha.1+mc26.3",
+  "measuredOptimizerSha256": "36da6b798c134a71f64cb06f8a0bc877023d4233932596a792201f6ddfd29a62",
+  "promotedRelease": "0.8.0+mc26.3",
+  "benchmarkVersion": "1.1.0",
+  "hardware": {
+    "cpu": "AMD Ryzen 5 5600",
+    "gpu": "NVIDIA GeForce RTX 3070 8 GB",
+    "ramGiB": 16
+  },
+  "window": {
+    "width": 1920,
+    "height": 1080
+  },
+  "shader": {
+    "pack": "ComplementaryUnbound_r5.9.3.zip",
+    "preset": "High",
+    "presetSource": "Reported by the tester in the release request; preset options were not exported in these archives."
+  },
+  "method": "Pooled FPS = sum(frames) / sum(seconds); two 30-second repetitions per mode, ABBA; separate two-second diagnostic windows; percentages use unrounded values.",
+  "runs": {
+    "no_shaders": {
+      "archiveName": "2026-10-15T171723-691187200Z_no_shaders-results.zip",
+      "archiveSha256": "516c58dea488c3a2486f0af55a520ad75aa5ce32e2bbaf59eaa6c431ee945284",
+      "startedUtc": "2026-10-15T17:17:23.692202900Z",
+      "endedUtc": "2026-10-15T17:50:22.587564500Z",
+      "status": "complete",
+      "restoredSettings": true,
+      "checks": [
+        {
+          "check": "DrawLookupIndexTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "ModelCacheTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "SettingsTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "DisplayFrustumTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GitHubReleaseFeedTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GuiBackgroundTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GeometryCacheTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "BoundsTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GeometryPipelineCases",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "Visual output, GUI tabs, shader pack, reconnect",
+          "status": "MANUAL",
+          "detail": "Use the checklist in README.ru.md; counters and FPS cannot prove correct pixels."
+        },
+        {
+          "check": "Actual resource reload invalidation",
+          "status": "PASS",
+          "detail": "Geometry generation 7 -> 8"
+        }
+      ],
+      "comparisons": [
+        {
+          "group": "combined",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 17575,
+            "seconds": 60.002300000000005,
+            "fps": 292.9054386248527,
+            "mean_ms": 3.4140711237553343,
+            "low_1_percent_range": [
+              118.0983,
+              124.4829
+            ],
+            "mean_phase_low_1_percent_fps": 121.2906,
+            "phases": [
+              "01_combined_front_off_1",
+              "04_combined_front_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 18251,
+            "seconds": 60.0039,
+            "fps": 304.1635627017577,
+            "mean_ms": 3.2877047832995454,
+            "low_1_percent_range": [
+              130.1691,
+              143.4669
+            ],
+            "mean_phase_low_1_percent_fps": 136.81799999999998,
+            "phases": [
+              "02_combined_front_full_1",
+              "03_combined_front_full_2"
+            ]
+          },
+          "change_percent": 3.843603631861603
+        },
+        {
+          "group": "combined",
+          "view": "BACK",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 61363,
+            "seconds": 60.001000000000005,
+            "fps": 1022.6996216729721,
+            "mean_ms": 0.9778042142659258,
+            "low_1_percent_range": [
+              463.0407,
+              467.7184
+            ],
+            "mean_phase_low_1_percent_fps": 465.37955,
+            "phases": [
+              "05_combined_back_off_1",
+              "08_combined_back_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 75106,
+            "seconds": 60.0009,
+            "fps": 1251.7478904483098,
+            "mean_ms": 0.7988829121508269,
+            "low_1_percent_range": [
+              540.2022,
+              554.4036
+            ],
+            "mean_phase_low_1_percent_fps": 547.3028999999999,
+            "phases": [
+              "06_combined_back_full_1",
+              "07_combined_back_full_2"
+            ]
+          },
+          "change_percent": 22.396436247883965
+        },
+        {
+          "group": "combined",
+          "view": "WALL",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 17604,
+            "seconds": 60.0038,
+            "fps": 293.38141917678547,
+            "mean_ms": 3.4085321517836853,
+            "low_1_percent_range": [
+              137.8313,
+              141.7379
+            ],
+            "mean_phase_low_1_percent_fps": 139.7846,
+            "phases": [
+              "09_combined_wall_off_1",
+              "12_combined_wall_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 38392,
+            "seconds": 60.0029,
+            "fps": 639.8357412725052,
+            "mean_ms": 1.5629011252344236,
+            "low_1_percent_range": [
+              231.7021,
+              234.7014
+            ],
+            "mean_phase_low_1_percent_fps": 233.20175,
+            "phases": [
+              "10_combined_wall_full_1",
+              "11_combined_wall_full_2"
+            ]
+          },
+          "change_percent": 118.09006959876815
+        },
+        {
+          "group": "combined",
+          "view": "GLASS",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 17295,
+            "seconds": 60.0034,
+            "fps": 288.23366675888366,
+            "mean_ms": 3.469407343162764,
+            "low_1_percent_range": [
+              125.542,
+              134.7093
+            ],
+            "mean_phase_low_1_percent_fps": 130.12565,
+            "phases": [
+              "13_combined_glass_off_1",
+              "16_combined_glass_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 17903,
+            "seconds": 60.0041,
+            "fps": 298.36294519874474,
+            "mean_ms": 3.351622633078255,
+            "low_1_percent_range": [
+              133.4027,
+              134.1299
+            ],
+            "mean_phase_low_1_percent_fps": 133.7663,
+            "phases": [
+              "14_combined_glass_full_1",
+              "15_combined_glass_full_2"
+            ]
+          },
+          "change_percent": 3.514259300019429
+        },
+        {
+          "group": "draw_index",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 17239,
+            "seconds": 60.0048,
+            "fps": 287.2936831720129,
+            "mean_ms": 3.48075874470677,
+            "low_1_percent_range": [
+              133.4019,
+              134.6268
+            ],
+            "mean_phase_low_1_percent_fps": 134.01435,
+            "phases": [
+              "17_draw_index_front_base_1",
+              "20_draw_index_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "INDEX",
+            "frames": 17652,
+            "seconds": 60.0035,
+            "fps": 294.18283933437215,
+            "mean_ms": 3.399246544300929,
+            "low_1_percent_range": [
+              136.2493,
+              136.6799
+            ],
+            "mean_phase_low_1_percent_fps": 136.46460000000002,
+            "phases": [
+              "18_draw_index_front_index_1",
+              "19_draw_index_front_index_2"
+            ]
+          },
+          "change_percent": 2.3979490555782412
+        },
+        {
+          "group": "frame_cache",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 16022,
+            "seconds": 60.0034,
+            "fps": 267.01820230186956,
+            "mean_ms": 3.745063038322307,
+            "low_1_percent_range": [
+              117.1912,
+              121.7369
+            ],
+            "mean_phase_low_1_percent_fps": 119.46405,
+            "phases": [
+              "21_frame_cache_front_base_1",
+              "24_frame_cache_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FRAME_CACHE",
+            "frames": 15954,
+            "seconds": 60.0039,
+            "fps": 265.8827176233545,
+            "mean_ms": 3.7610567882662655,
+            "low_1_percent_range": [
+              111.6132,
+              119.2446
+            ],
+            "mean_phase_low_1_percent_fps": 115.4289,
+            "phases": [
+              "22_frame_cache_front_frame_cache_1",
+              "23_frame_cache_front_frame_cache_2"
+            ]
+          },
+          "change_percent": -0.4252461700088084
+        },
+        {
+          "group": "geometry_repeated",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 15767,
+            "seconds": 60.002700000000004,
+            "fps": 262.7715086154456,
+            "mean_ms": 3.8055876197120573,
+            "low_1_percent_range": [
+              118.372,
+              118.7413
+            ],
+            "mean_phase_low_1_percent_fps": 118.55664999999999,
+            "phases": [
+              "25_geometry_repeated_front_base_1",
+              "28_geometry_repeated_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "GEOMETRY",
+            "frames": 16726,
+            "seconds": 60.0052,
+            "fps": 278.74250898255485,
+            "mean_ms": 3.58754035633146,
+            "low_1_percent_range": [
+              123.9963,
+              126.5863
+            ],
+            "mean_phase_low_1_percent_fps": 125.2913,
+            "phases": [
+              "26_geometry_repeated_front_geometry_1",
+              "27_geometry_repeated_front_geometry_2"
+            ]
+          },
+          "change_percent": 6.07790412714877
+        },
+        {
+          "group": "geometry_varied",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 17116,
+            "seconds": 60.0043,
+            "fps": 285.24622402061186,
+            "mean_ms": 3.505743164290722,
+            "low_1_percent_range": [
+              115.6356,
+              129.837
+            ],
+            "mean_phase_low_1_percent_fps": 122.7363,
+            "phases": [
+              "29_geometry_varied_front_base_1",
+              "32_geometry_varied_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "GEOMETRY",
+            "frames": 17928,
+            "seconds": 60.0023,
+            "fps": 298.78854643905316,
+            "mean_ms": 3.3468485051316375,
+            "low_1_percent_range": [
+              126.2538,
+              135.8808
+            ],
+            "mean_phase_low_1_percent_fps": 131.0673,
+            "phases": [
+              "30_geometry_varied_front_geometry_1",
+              "31_geometry_varied_front_geometry_2"
+            ]
+          },
+          "change_percent": 4.74759042470716
+        },
+        {
+          "group": "geometry_changing",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 16987,
+            "seconds": 60.003299999999996,
+            "fps": 283.10109610638085,
+            "mean_ms": 3.5323070583387293,
+            "low_1_percent_range": [
+              121.0104,
+              130.215
+            ],
+            "mean_phase_low_1_percent_fps": 125.6127,
+            "phases": [
+              "33_geometry_changing_front_base_1",
+              "36_geometry_changing_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "GEOMETRY",
+            "frames": 17769,
+            "seconds": 60.003,
+            "fps": 296.13519324033797,
+            "mean_ms": 3.3768360628060106,
+            "low_1_percent_range": [
+              130.2586,
+              133.0465
+            ],
+            "mean_phase_low_1_percent_fps": 131.65255000000002,
+            "phases": [
+              "34_geometry_changing_front_geometry_1",
+              "35_geometry_changing_front_geometry_2"
+            ]
+          },
+          "change_percent": 4.604043330534924
+        },
+        {
+          "group": "frustum",
+          "view": "BACK",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 61081,
+            "seconds": 60.0012,
+            "fps": 1017.9963067405318,
+            "mean_ms": 0.9823218349404889,
+            "low_1_percent_range": [
+              428.5323,
+              452.1993
+            ],
+            "mean_phase_low_1_percent_fps": 440.36580000000004,
+            "phases": [
+              "37_frustum_back_base_1",
+              "40_frustum_back_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FRUSTUM",
+            "frames": 73626,
+            "seconds": 60.000699999999995,
+            "fps": 1227.0856840003535,
+            "mean_ms": 0.8149390161084399,
+            "low_1_percent_range": [
+              498.6809,
+              523.5184
+            ],
+            "mean_phase_low_1_percent_fps": 511.09965,
+            "phases": [
+              "38_frustum_back_frustum_1",
+              "39_frustum_back_frustum_2"
+            ]
+          },
+          "change_percent": 20.539306073643203
+        },
+        {
+          "group": "occlusion",
+          "view": "WALL",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 16999,
+            "seconds": 60.0011,
+            "fps": 283.3114726230019,
+            "mean_ms": 3.5296840990646507,
+            "low_1_percent_range": [
+              129.3351,
+              144.2469
+            ],
+            "mean_phase_low_1_percent_fps": 136.791,
+            "phases": [
+              "41_occlusion_wall_base_1",
+              "44_occlusion_wall_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "OCCLUSION",
+            "frames": 34412,
+            "seconds": 60.001400000000004,
+            "fps": 573.5199512011386,
+            "mean_ms": 1.7436185051726143,
+            "low_1_percent_range": [
+              201.1115,
+              223.7352
+            ],
+            "mean_phase_low_1_percent_fps": 212.42335,
+            "phases": [
+              "42_occlusion_wall_occlusion_1",
+              "43_occlusion_wall_occlusion_2"
+            ]
+          },
+          "change_percent": 102.43442522509936
+        },
+        {
+          "group": "distance",
+          "view": "DISTANCE",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 17024,
+            "seconds": 60.004900000000006,
+            "fps": 283.7101636699669,
+            "mean_ms": 3.5247239191729327,
+            "low_1_percent_range": [
+              142.8795,
+              144.6005
+            ],
+            "mean_phase_low_1_percent_fps": 143.74,
+            "phases": [
+              "45_distance_distance_base_1",
+              "48_distance_distance_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "RANGE18",
+            "frames": 85046,
+            "seconds": 60.0006,
+            "fps": 1417.419159141742,
+            "mean_ms": 0.705507607647626,
+            "low_1_percent_range": [
+              623.7494,
+              647.2819
+            ],
+            "mean_phase_low_1_percent_fps": 635.51565,
+            "phases": [
+              "46_distance_distance_range18_1",
+              "47_distance_distance_range18_2"
+            ]
+          },
+          "change_percent": 399.6011213720884
+        }
+      ],
+      "diagnostics": [
+        {
+          "id": "01_combined_front_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 576,
+          "seconds": 2.0013639,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "02_combined_front_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 580,
+          "seconds": 2.0000305,
+          "counters": {
+            "frame_cache_lookups": 174000,
+            "geometry_cache_lookups": 174000,
+            "geometry_cache_lookup_hits_including_markers": 174000,
+            "geometry_mesh_replays": 174000,
+            "frame_snapshot_bypasses": 174000,
+            "indexed_lookups": 39440,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "03_combined_front_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 593,
+          "seconds": 2.0013978,
+          "counters": {
+            "frame_cache_lookups": 177900,
+            "geometry_cache_lookups": 177900,
+            "geometry_cache_lookup_hits_including_markers": 177900,
+            "geometry_mesh_replays": 177900,
+            "frame_snapshot_bypasses": 177900,
+            "indexed_lookups": 40324,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "04_combined_front_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 572,
+          "seconds": 2.0012182,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "05_combined_back_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 2000,
+          "seconds": 2.0001606,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "06_combined_back_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 2409,
+          "seconds": 2.0007117,
+          "counters": {
+            "frame_cache_lookups": 72270,
+            "geometry_cache_lookups": 72270,
+            "geometry_cache_lookup_hits_including_markers": 72270,
+            "geometry_mesh_replays": 72270,
+            "frame_snapshot_bypasses": 72270
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "07_combined_back_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 2526,
+          "seconds": 2.0006284,
+          "counters": {
+            "frame_cache_lookups": 75780,
+            "geometry_cache_lookups": 75780,
+            "geometry_cache_lookup_hits_including_markers": 75780,
+            "geometry_mesh_replays": 75780,
+            "frame_snapshot_bypasses": 75780
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "08_combined_back_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 2045,
+          "seconds": 2.0001321,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "09_combined_wall_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 572,
+          "seconds": 2.0023686,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "10_combined_wall_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 1239,
+          "seconds": 2.0002813,
+          "counters": {
+            "frame_cache_lookups": 371700,
+            "geometry_cache_lookups": 371700,
+            "geometry_cache_lookup_hits_including_markers": 371700,
+            "geometry_mesh_replays": 371700,
+            "frame_snapshot_bypasses": 371700
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "11_combined_wall_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 1206,
+          "seconds": 2.0003049,
+          "counters": {
+            "frame_cache_lookups": 361800,
+            "geometry_cache_lookups": 361800,
+            "geometry_cache_lookup_hits_including_markers": 361800,
+            "geometry_mesh_replays": 361800,
+            "frame_snapshot_bypasses": 361800
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "12_combined_wall_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 582,
+          "seconds": 2.0015585,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "13_combined_glass_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 536,
+          "seconds": 2.0002318,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "14_combined_glass_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 589,
+          "seconds": 2.001946,
+          "counters": {
+            "frame_cache_lookups": 176700,
+            "geometry_cache_lookups": 176700,
+            "geometry_cache_lookup_hits_including_markers": 176700,
+            "geometry_mesh_replays": 176700,
+            "frame_snapshot_bypasses": 176700,
+            "indexed_lookups": 40052,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "15_combined_glass_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 592,
+          "seconds": 2.0007382,
+          "counters": {
+            "frame_cache_lookups": 177600,
+            "geometry_cache_lookups": 177600,
+            "geometry_cache_lookup_hits_including_markers": 177600,
+            "geometry_mesh_replays": 177600,
+            "frame_snapshot_bypasses": 177600,
+            "indexed_lookups": 40256,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "16_combined_glass_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 576,
+          "seconds": 2.0020782,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "17_draw_index_front_base_1",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 588,
+          "seconds": 2.0015414,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "18_draw_index_front_index_1",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "INDEX",
+            "repetition": 1
+          },
+          "frames": 559,
+          "seconds": 2.0020867,
+          "counters": {
+            "indexed_lookups": 56459,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "19_draw_index_front_index_2",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "INDEX",
+            "repetition": 2
+          },
+          "frames": 565,
+          "seconds": 2.0016757,
+          "counters": {
+            "indexed_lookups": 57065,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "20_draw_index_front_base_2",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 565,
+          "seconds": 2.0020814,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "21_frame_cache_front_base_1",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 532,
+          "seconds": 2.001148,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "22_frame_cache_front_frame_cache_1",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "FRAME_CACHE",
+            "repetition": 1
+          },
+          "frames": 534,
+          "seconds": 2.0013054,
+          "counters": {
+            "frame_cache_lookups": 160200,
+            "frame_snapshot_bypasses": 160200
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "23_frame_cache_front_frame_cache_2",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "FRAME_CACHE",
+            "repetition": 2
+          },
+          "frames": 527,
+          "seconds": 2.0006598,
+          "counters": {
+            "frame_cache_lookups": 158100,
+            "frame_snapshot_bypasses": 158100
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "24_frame_cache_front_base_2",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 525,
+          "seconds": 2.0001495,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "25_geometry_repeated_front_base_1",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 522,
+          "seconds": 2.0032964,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "26_geometry_repeated_front_geometry_1",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 1
+          },
+          "frames": 543,
+          "seconds": 2.0012483,
+          "counters": {
+            "geometry_cache_lookups": 162900,
+            "geometry_cache_lookup_hits_including_markers": 162900,
+            "geometry_mesh_replays": 162900
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "27_geometry_repeated_front_geometry_2",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 2
+          },
+          "frames": 560,
+          "seconds": 2.001929,
+          "counters": {
+            "geometry_cache_lookups": 168000,
+            "geometry_cache_lookup_hits_including_markers": 168000,
+            "geometry_mesh_replays": 168000
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "28_geometry_repeated_front_base_2",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 506,
+          "seconds": 2.0016573,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "29_geometry_varied_front_base_1",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 568,
+          "seconds": 2.000091,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "30_geometry_varied_front_geometry_1",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 1
+          },
+          "frames": 600,
+          "seconds": 2.0030386,
+          "counters": {
+            "geometry_cache_lookups": 180000,
+            "geometry_cache_lookup_hits_including_markers": 180000,
+            "geometry_mesh_replays": 180000
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "31_geometry_varied_front_geometry_2",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 2
+          },
+          "frames": 611,
+          "seconds": 2.0017119,
+          "counters": {
+            "geometry_cache_lookups": 183300,
+            "geometry_cache_lookup_hits_including_markers": 183300,
+            "geometry_mesh_replays": 183300
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "32_geometry_varied_front_base_2",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 563,
+          "seconds": 2.0001299,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "33_geometry_changing_front_base_1",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 568,
+          "seconds": 2.0001567,
+          "counters": {
+            "client_block_state_changes": 600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 40
+          }
+        },
+        {
+          "id": "34_geometry_changing_front_geometry_1",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 1
+          },
+          "frames": 578,
+          "seconds": 2.0009248,
+          "counters": {
+            "geometry_cache_lookups": 173400,
+            "geometry_cache_lookup_hits_including_markers": 173400,
+            "geometry_mesh_replays": 173400,
+            "client_block_state_changes": 600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 39
+          }
+        },
+        {
+          "id": "35_geometry_changing_front_geometry_2",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 2
+          },
+          "frames": 596,
+          "seconds": 2.0004633,
+          "counters": {
+            "geometry_cache_lookups": 178800,
+            "geometry_cache_lookup_hits_including_markers": 178800,
+            "geometry_mesh_replays": 178800,
+            "client_block_state_changes": 600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 39
+          }
+        },
+        {
+          "id": "36_geometry_changing_front_base_2",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 578,
+          "seconds": 2.0009809,
+          "counters": {
+            "client_block_state_changes": 300
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 40
+          }
+        },
+        {
+          "id": "37_frustum_back_base_1",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 2003,
+          "seconds": 2.0006979,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "38_frustum_back_frustum_1",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FRUSTUM",
+            "repetition": 1
+          },
+          "frames": 2449,
+          "seconds": 2.0000965,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "39_frustum_back_frustum_2",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FRUSTUM",
+            "repetition": 2
+          },
+          "frames": 2472,
+          "seconds": 2.0059488,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "40_frustum_back_base_2",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 2051,
+          "seconds": 2.000485,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "41_occlusion_wall_base_1",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 573,
+          "seconds": 2.0008288,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "42_occlusion_wall_occlusion_1",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OCCLUSION",
+            "repetition": 1
+          },
+          "frames": 1114,
+          "seconds": 2.0010876,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "43_occlusion_wall_occlusion_2",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OCCLUSION",
+            "repetition": 2
+          },
+          "frames": 987,
+          "seconds": 2.0017122,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "44_occlusion_wall_base_2",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 548,
+          "seconds": 2.0005191,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "45_distance_distance_base_1",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 570,
+          "seconds": 2.0004131,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "46_distance_distance_range18_1",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "RANGE18",
+            "repetition": 1
+          },
+          "frames": 2777,
+          "seconds": 2.0000671,
+          "counters": {
+            "distance_rejections": 1666200
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "47_distance_distance_range18_2",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "RANGE18",
+            "repetition": 2
+          },
+          "frames": 2827,
+          "seconds": 2.0029158,
+          "counters": {
+            "distance_rejections": 1696200
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "48_distance_distance_base_2",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 573,
+          "seconds": 2.0009301,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        }
+      ]
+    },
+    "shaders_high": {
+      "archiveName": "2026-10-15T175222-670228Z_shaders-results.zip",
+      "archiveSha256": "11252db89e632efd52d5c885fa504c90169dc159e68f48e81127b40697ebcbea",
+      "startedUtc": "2026-10-15T17:52:22.670228Z",
+      "endedUtc": "2026-10-15T18:25:21.204500400Z",
+      "status": "complete",
+      "restoredSettings": true,
+      "checks": [
+        {
+          "check": "DrawLookupIndexTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "ModelCacheTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "SettingsTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "DisplayFrustumTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GitHubReleaseFeedTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GuiBackgroundTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GeometryCacheTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "BoundsTest",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "GeometryPipelineCases",
+          "status": "PASS",
+          "detail": "Completed against the loaded DMO/game classes; detailed assertions are in the local diagnostic log."
+        },
+        {
+          "check": "Visual output, GUI tabs, shader pack, reconnect",
+          "status": "MANUAL",
+          "detail": "Use the checklist in README.ru.md; counters and FPS cannot prove correct pixels."
+        },
+        {
+          "check": "Actual resource reload invalidation",
+          "status": "PASS",
+          "detail": "Geometry generation 62 -> 63"
+        }
+      ],
+      "comparisons": [
+        {
+          "group": "combined",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 6681,
+            "seconds": 60.0109,
+            "fps": 111.32977509085849,
+            "mean_ms": 8.982323005538094,
+            "low_1_percent_range": [
+              66.4685,
+              66.5222
+            ],
+            "mean_phase_low_1_percent_fps": 66.49535,
+            "phases": [
+              "01_combined_front_off_1",
+              "04_combined_front_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 6872,
+            "seconds": 60.016000000000005,
+            "fps": 114.50279925353239,
+            "mean_ms": 8.733410942956928,
+            "low_1_percent_range": [
+              66.8983,
+              67.1904
+            ],
+            "mean_phase_low_1_percent_fps": 67.04435000000001,
+            "phases": [
+              "02_combined_front_full_1",
+              "03_combined_front_full_2"
+            ]
+          },
+          "change_percent": 2.8501127933513892
+        },
+        {
+          "group": "combined",
+          "view": "BACK",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 10847,
+            "seconds": 60.0059,
+            "fps": 180.76555805345808,
+            "mean_ms": 5.532027288651239,
+            "low_1_percent_range": [
+              95.5022,
+              95.6225
+            ],
+            "mean_phase_low_1_percent_fps": 95.56235000000001,
+            "phases": [
+              "05_combined_back_off_1",
+              "08_combined_back_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 19555,
+            "seconds": 60.0037,
+            "fps": 325.8965697115344,
+            "mean_ms": 3.0684581948350806,
+            "low_1_percent_range": [
+              154.4779,
+              161.9284
+            ],
+            "mean_phase_low_1_percent_fps": 158.20315,
+            "phases": [
+              "06_combined_back_full_1",
+              "07_combined_back_full_2"
+            ]
+          },
+          "change_percent": 80.28687169220396
+        },
+        {
+          "group": "combined",
+          "view": "WALL",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 7030,
+            "seconds": 60.0052,
+            "fps": 117.1565131021978,
+            "mean_ms": 8.535590327169276,
+            "low_1_percent_range": [
+              66.2536,
+              66.4026
+            ],
+            "mean_phase_low_1_percent_fps": 66.3281,
+            "phases": [
+              "09_combined_wall_off_1",
+              "12_combined_wall_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 9918,
+            "seconds": 60.0105,
+            "fps": 165.27107756142675,
+            "mean_ms": 6.050665456745311,
+            "low_1_percent_range": [
+              87.3522,
+              87.7823
+            ],
+            "mean_phase_low_1_percent_fps": 87.56725,
+            "phases": [
+              "10_combined_wall_full_1",
+              "11_combined_wall_full_2"
+            ]
+          },
+          "change_percent": 41.068621099415715
+        },
+        {
+          "group": "combined",
+          "view": "GLASS",
+          "baseline": {
+            "mode": "OFF",
+            "frames": 6897,
+            "seconds": 60.0005,
+            "fps": 114.9490420913159,
+            "mean_ms": 8.699507032042916,
+            "low_1_percent_range": [
+              66.9091,
+              68.1867
+            ],
+            "mean_phase_low_1_percent_fps": 67.5479,
+            "phases": [
+              "13_combined_glass_off_1",
+              "16_combined_glass_off_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FULL",
+            "frames": 7035,
+            "seconds": 60.00449999999999,
+            "fps": 117.2412069094818,
+            "mean_ms": 8.529424307036246,
+            "low_1_percent_range": [
+              66.1329,
+              68.1475
+            ],
+            "mean_phase_low_1_percent_fps": 67.1402,
+            "phases": [
+              "14_combined_glass_full_1",
+              "15_combined_glass_full_2"
+            ]
+          },
+          "change_percent": 1.994070395423564
+        },
+        {
+          "group": "draw_index",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 7014,
+            "seconds": 60.0141,
+            "fps": 116.87253495428574,
+            "mean_ms": 8.556330196749359,
+            "low_1_percent_range": [
+              67.988,
+              68.6898
+            ],
+            "mean_phase_low_1_percent_fps": 68.3389,
+            "phases": [
+              "17_draw_index_front_base_1",
+              "20_draw_index_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "INDEX",
+            "frames": 7092,
+            "seconds": 60.0102,
+            "fps": 118.1799094153994,
+            "mean_ms": 8.461675126903552,
+            "low_1_percent_range": [
+              64.4959,
+              65.7598
+            ],
+            "mean_phase_low_1_percent_fps": 65.12785,
+            "phases": [
+              "18_draw_index_front_index_1",
+              "19_draw_index_front_index_2"
+            ]
+          },
+          "change_percent": 1.1186327580085642
+        },
+        {
+          "group": "frame_cache",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 6306,
+            "seconds": 60.015100000000004,
+            "fps": 105.07355648828377,
+            "mean_ms": 9.517142404059626,
+            "low_1_percent_range": [
+              58.2781,
+              61.6042
+            ],
+            "mean_phase_low_1_percent_fps": 59.94115,
+            "phases": [
+              "21_frame_cache_front_base_1",
+              "24_frame_cache_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FRAME_CACHE",
+            "frames": 6422,
+            "seconds": 60.011700000000005,
+            "fps": 107.01246590248235,
+            "mean_ms": 9.34470569915914,
+            "low_1_percent_range": [
+              62.1611,
+              62.1982
+            ],
+            "mean_phase_low_1_percent_fps": 62.179649999999995,
+            "phases": [
+              "22_frame_cache_front_frame_cache_1",
+              "23_frame_cache_front_frame_cache_2"
+            ]
+          },
+          "change_percent": 1.8452877003499735
+        },
+        {
+          "group": "geometry_repeated",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 6426,
+            "seconds": 60.015100000000004,
+            "fps": 107.07305328159079,
+            "mean_ms": 9.33941798941799,
+            "low_1_percent_range": [
+              61.6874,
+              62.103
+            ],
+            "mean_phase_low_1_percent_fps": 61.8952,
+            "phases": [
+              "25_geometry_repeated_front_base_1",
+              "28_geometry_repeated_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "GEOMETRY",
+            "frames": 6596,
+            "seconds": 60.0079,
+            "fps": 109.91886068334335,
+            "mean_ms": 9.097619769557308,
+            "low_1_percent_range": [
+              63.4286,
+              63.7957
+            ],
+            "mean_phase_low_1_percent_fps": 63.61215,
+            "phases": [
+              "26_geometry_repeated_front_geometry_1",
+              "27_geometry_repeated_front_geometry_2"
+            ]
+          },
+          "change_percent": 2.6578184842346753
+        },
+        {
+          "group": "geometry_varied",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 6966,
+            "seconds": 60.0052,
+            "fps": 116.08993887196442,
+            "mean_ms": 8.614010910134942,
+            "low_1_percent_range": [
+              64.0006,
+              64.3979
+            ],
+            "mean_phase_low_1_percent_fps": 64.19925,
+            "phases": [
+              "29_geometry_varied_front_base_1",
+              "32_geometry_varied_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "GEOMETRY",
+            "frames": 7213,
+            "seconds": 60.0048,
+            "fps": 120.20705010265844,
+            "mean_ms": 8.318979620130321,
+            "low_1_percent_range": [
+              64.0235,
+              68.5931
+            ],
+            "mean_phase_low_1_percent_fps": 66.3083,
+            "phases": [
+              "30_geometry_varied_front_geometry_1",
+              "31_geometry_varied_front_geometry_2"
+            ]
+          },
+          "change_percent": 3.546484105943737
+        },
+        {
+          "group": "geometry_changing",
+          "view": "FRONT",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 6945,
+            "seconds": 60.005700000000004,
+            "fps": 115.73900479454451,
+            "mean_ms": 8.64012958963283,
+            "low_1_percent_range": [
+              62.7062,
+              67.1456
+            ],
+            "mean_phase_low_1_percent_fps": 64.9259,
+            "phases": [
+              "33_geometry_changing_front_base_1",
+              "36_geometry_changing_front_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "GEOMETRY",
+            "frames": 7160,
+            "seconds": 60.00790000000001,
+            "fps": 119.31762317961467,
+            "mean_ms": 8.380991620111732,
+            "low_1_percent_range": [
+              54.8024,
+              65.1383
+            ],
+            "mean_phase_low_1_percent_fps": 59.970349999999996,
+            "phases": [
+              "34_geometry_changing_front_geometry_1",
+              "35_geometry_changing_front_geometry_2"
+            ]
+          },
+          "change_percent": 3.0919726598848785
+        },
+        {
+          "group": "frustum",
+          "view": "BACK",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 11137,
+            "seconds": 60.0086,
+            "fps": 185.5900654239559,
+            "mean_ms": 5.3882194486845645,
+            "low_1_percent_range": [
+              93.5916,
+              97.8442
+            ],
+            "mean_phase_low_1_percent_fps": 95.7179,
+            "phases": [
+              "37_frustum_back_base_1",
+              "40_frustum_back_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "FRUSTUM",
+            "frames": 19964,
+            "seconds": 60.0032,
+            "fps": 332.71558850194657,
+            "mean_ms": 3.0055700260468843,
+            "low_1_percent_range": [
+              139.0601,
+              150.144
+            ],
+            "mean_phase_low_1_percent_fps": 144.60205000000002,
+            "phases": [
+              "38_frustum_back_frustum_1",
+              "39_frustum_back_frustum_2"
+            ]
+          },
+          "change_percent": 79.2744604846719
+        },
+        {
+          "group": "occlusion",
+          "view": "WALL",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 6881,
+            "seconds": 60.0138,
+            "fps": 114.65696223201996,
+            "mean_ms": 8.721668362156663,
+            "low_1_percent_range": [
+              64.3454,
+              66.6325
+            ],
+            "mean_phase_low_1_percent_fps": 65.48894999999999,
+            "phases": [
+              "41_occlusion_wall_base_1",
+              "44_occlusion_wall_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "OCCLUSION",
+            "frames": 9128,
+            "seconds": 60.010000000000005,
+            "fps": 152.10798200299948,
+            "mean_ms": 6.574276950043822,
+            "low_1_percent_range": [
+              78.804,
+              81.7829
+            ],
+            "mean_phase_low_1_percent_fps": 80.29345,
+            "phases": [
+              "42_occlusion_wall_occlusion_1",
+              "43_occlusion_wall_occlusion_2"
+            ]
+          },
+          "change_percent": 32.66353742670558
+        },
+        {
+          "group": "distance",
+          "view": "DISTANCE",
+          "baseline": {
+            "mode": "BASE",
+            "frames": 6864,
+            "seconds": 60.011700000000005,
+            "fps": 114.37769634921189,
+            "mean_ms": 8.742963286713287,
+            "low_1_percent_range": [
+              64.2624,
+              65.7739
+            ],
+            "mean_phase_low_1_percent_fps": 65.01814999999999,
+            "phases": [
+              "45_distance_distance_base_1",
+              "48_distance_distance_base_2"
+            ]
+          },
+          "optimized": {
+            "mode": "RANGE18",
+            "frames": 22100,
+            "seconds": 60.0031,
+            "fps": 368.31430376097234,
+            "mean_ms": 2.7150723981900455,
+            "low_1_percent_range": [
+              224.572,
+              234.3778
+            ],
+            "mean_phase_low_1_percent_fps": 229.4749,
+            "phases": [
+              "46_distance_distance_range18_1",
+              "47_distance_distance_range18_2"
+            ]
+          },
+          "change_percent": 222.01584357535472
+        }
+      ],
+      "diagnostics": [
+        {
+          "id": "01_combined_front_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 217,
+          "seconds": 2.0028974,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "02_combined_front_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 224,
+          "seconds": 2.0016547,
+          "counters": {
+            "frame_cache_lookups": 67200,
+            "geometry_cache_lookups": 134400,
+            "geometry_cache_lookup_hits_including_markers": 134400,
+            "geometry_mesh_replays": 134400,
+            "frame_snapshot_bypasses": 67200,
+            "indexed_lookups": 30464,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "03_combined_front_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 228,
+          "seconds": 2.0020632,
+          "counters": {
+            "frame_cache_lookups": 68400,
+            "geometry_cache_lookups": 136800,
+            "geometry_cache_lookup_hits_including_markers": 136800,
+            "geometry_mesh_replays": 136800,
+            "frame_snapshot_bypasses": 68400,
+            "indexed_lookups": 31008,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "04_combined_front_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "FRONT",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 221,
+          "seconds": 2.0036937,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "05_combined_back_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 335,
+          "seconds": 2.0020483,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "06_combined_back_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 611,
+          "seconds": 2.0028118,
+          "counters": {
+            "frame_cache_lookups": 18330,
+            "geometry_cache_lookups": 201630,
+            "geometry_cache_lookup_hits_including_markers": 201630,
+            "geometry_mesh_replays": 201630,
+            "frame_snapshot_bypasses": 18330
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "07_combined_back_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 604,
+          "seconds": 2.0020912,
+          "counters": {
+            "frame_cache_lookups": 18120,
+            "geometry_cache_lookups": 199320,
+            "geometry_cache_lookup_hits_including_markers": 199320,
+            "geometry_mesh_replays": 199320,
+            "frame_snapshot_bypasses": 18120
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "08_combined_back_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 379,
+          "seconds": 2.0047431,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "09_combined_wall_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 234,
+          "seconds": 2.0061117,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "10_combined_wall_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 323,
+          "seconds": 2.0013057,
+          "counters": {
+            "frame_cache_lookups": 96900,
+            "geometry_cache_lookups": 193800,
+            "geometry_cache_lookup_hits_including_markers": 193800,
+            "geometry_mesh_replays": 193800,
+            "frame_snapshot_bypasses": 96900,
+            "indexed_lookups": 21964,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "11_combined_wall_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 329,
+          "seconds": 2.0050316,
+          "counters": {
+            "frame_cache_lookups": 98700,
+            "geometry_cache_lookups": 197400,
+            "geometry_cache_lookup_hits_including_markers": 197400,
+            "geometry_mesh_replays": 197400,
+            "frame_snapshot_bypasses": 98700,
+            "indexed_lookups": 22372,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "12_combined_wall_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 233,
+          "seconds": 2.0016782,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "13_combined_glass_off_1",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 1
+          },
+          "frames": 230,
+          "seconds": 2.0059276,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "14_combined_glass_full_1",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 1
+          },
+          "frames": 235,
+          "seconds": 2.006176,
+          "counters": {
+            "frame_cache_lookups": 70500,
+            "geometry_cache_lookups": 141000,
+            "geometry_cache_lookup_hits_including_markers": 141000,
+            "geometry_mesh_replays": 141000,
+            "frame_snapshot_bypasses": 70500,
+            "indexed_lookups": 31960,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "15_combined_glass_full_2",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "FULL",
+            "repetition": 2
+          },
+          "frames": 236,
+          "seconds": 2.0025767,
+          "counters": {
+            "frame_cache_lookups": 70800,
+            "geometry_cache_lookups": 141600,
+            "geometry_cache_lookup_hits_including_markers": 141600,
+            "geometry_mesh_replays": 141600,
+            "frame_snapshot_bypasses": 70800,
+            "indexed_lookups": 32096,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "16_combined_glass_off_2",
+          "scenario": {
+            "group": "combined",
+            "view": "GLASS",
+            "workload": "MIXED",
+            "mode": "OFF",
+            "repetition": 2
+          },
+          "frames": 229,
+          "seconds": 2.0000813,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "17_draw_index_front_base_1",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 241,
+          "seconds": 2.0058167,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "18_draw_index_front_index_1",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "INDEX",
+            "repetition": 1
+          },
+          "frames": 238,
+          "seconds": 2.0010705,
+          "counters": {
+            "indexed_lookups": 48076,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "19_draw_index_front_index_2",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "INDEX",
+            "repetition": 2
+          },
+          "frames": 237,
+          "seconds": 2.0051011,
+          "counters": {
+            "indexed_lookups": 47874,
+            "maximum_draw_group_size": 99
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "20_draw_index_front_base_2",
+          "scenario": {
+            "group": "draw_index",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 237,
+          "seconds": 2.0081046,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "21_frame_cache_front_base_1",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 218,
+          "seconds": 2.0036263,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "22_frame_cache_front_frame_cache_1",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "FRAME_CACHE",
+            "repetition": 1
+          },
+          "frames": 216,
+          "seconds": 2.0030735,
+          "counters": {
+            "frame_cache_lookups": 64800,
+            "frame_snapshot_bypasses": 64800
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "23_frame_cache_front_frame_cache_2",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "FRAME_CACHE",
+            "repetition": 2
+          },
+          "frames": 215,
+          "seconds": 2.0035581,
+          "counters": {
+            "frame_cache_lookups": 64500,
+            "frame_snapshot_bypasses": 64500
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "24_frame_cache_front_base_2",
+          "scenario": {
+            "group": "frame_cache",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 210,
+          "seconds": 2.0017953,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "25_geometry_repeated_front_base_1",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 208,
+          "seconds": 2.0018011,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "26_geometry_repeated_front_geometry_1",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 1
+          },
+          "frames": 222,
+          "seconds": 2.0081103,
+          "counters": {
+            "geometry_cache_lookups": 133200,
+            "geometry_cache_lookup_hits_including_markers": 133200,
+            "geometry_mesh_replays": 133200
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "27_geometry_repeated_front_geometry_2",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 2
+          },
+          "frames": 221,
+          "seconds": 2.0028661,
+          "counters": {
+            "geometry_cache_lookups": 132600,
+            "geometry_cache_lookup_hits_including_markers": 132600,
+            "geometry_mesh_replays": 132600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "28_geometry_repeated_front_base_2",
+          "scenario": {
+            "group": "geometry_repeated",
+            "view": "FRONT",
+            "workload": "REPEATED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 208,
+          "seconds": 2.0059257,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 1,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "29_geometry_varied_front_base_1",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 237,
+          "seconds": 2.0034083,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "30_geometry_varied_front_geometry_1",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 1
+          },
+          "frames": 241,
+          "seconds": 2.0058254,
+          "counters": {
+            "geometry_cache_lookups": 144600,
+            "geometry_cache_lookup_hits_including_markers": 144600,
+            "geometry_mesh_replays": 144600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "31_geometry_varied_front_geometry_2",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 2
+          },
+          "frames": 242,
+          "seconds": 2.0074062,
+          "counters": {
+            "geometry_cache_lookups": 145200,
+            "geometry_cache_lookup_hits_including_markers": 145200,
+            "geometry_mesh_replays": 145200
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "32_geometry_varied_front_base_2",
+          "scenario": {
+            "group": "geometry_varied",
+            "view": "FRONT",
+            "workload": "VARIED_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 225,
+          "seconds": 2.0075264,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "33_geometry_changing_front_base_1",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 234,
+          "seconds": 2.0000504,
+          "counters": {
+            "client_block_state_changes": 600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 40
+          }
+        },
+        {
+          "id": "34_geometry_changing_front_geometry_1",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 1
+          },
+          "frames": 242,
+          "seconds": 2.0072384,
+          "counters": {
+            "geometry_cache_lookups": 145200,
+            "geometry_cache_lookup_hits_including_markers": 145200,
+            "geometry_mesh_replays": 145200,
+            "client_block_state_changes": 600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 39
+          }
+        },
+        {
+          "id": "35_geometry_changing_front_geometry_2",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "GEOMETRY",
+            "repetition": 2
+          },
+          "frames": 243,
+          "seconds": 2.0029908,
+          "counters": {
+            "geometry_cache_lookups": 145800,
+            "geometry_cache_lookup_hits_including_markers": 145800,
+            "geometry_mesh_replays": 145800,
+            "client_block_state_changes": 600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 40
+          }
+        },
+        {
+          "id": "36_geometry_changing_front_base_2",
+          "scenario": {
+            "group": "geometry_changing",
+            "view": "FRONT",
+            "workload": "CHANGING_BLOCKS",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 227,
+          "seconds": 2.0046731,
+          "counters": {
+            "client_block_state_changes": 600
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 39
+          }
+        },
+        {
+          "id": "37_frustum_back_base_1",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 371,
+          "seconds": 2.0051238,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "38_frustum_back_frustum_1",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FRUSTUM",
+            "repetition": 1
+          },
+          "frames": 671,
+          "seconds": 2.0015056,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "39_frustum_back_frustum_2",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "FRUSTUM",
+            "repetition": 2
+          },
+          "frames": 669,
+          "seconds": 2.0026395,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "40_frustum_back_base_2",
+          "scenario": {
+            "group": "frustum",
+            "view": "BACK",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 353,
+          "seconds": 2.0029202,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "41_occlusion_wall_base_1",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 227,
+          "seconds": 2.0086987,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "42_occlusion_wall_occlusion_1",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OCCLUSION",
+            "repetition": 1
+          },
+          "frames": 304,
+          "seconds": 2.0052988,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "43_occlusion_wall_occlusion_2",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "OCCLUSION",
+            "repetition": 2
+          },
+          "frames": 311,
+          "seconds": 2.0058753,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "44_occlusion_wall_base_2",
+          "scenario": {
+            "group": "occlusion",
+            "view": "WALL",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 231,
+          "seconds": 2.0008586,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "entityculling_marked_item": 300,
+            "loaded_block": 300,
+            "entityculling_marked_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "45_distance_distance_base_1",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 1
+          },
+          "frames": 235,
+          "seconds": 2.0032779,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "46_distance_distance_range18_1",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "RANGE18",
+            "repetition": 1
+          },
+          "frames": 736,
+          "seconds": 2.0010083,
+          "counters": {
+            "distance_rejections": 883200
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "47_distance_distance_range18_2",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "RANGE18",
+            "repetition": 2
+          },
+          "frames": 737,
+          "seconds": 2.0018439,
+          "counters": {
+            "distance_rejections": 884400
+          },
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        },
+        {
+          "id": "48_distance_distance_base_2",
+          "scenario": {
+            "group": "distance",
+            "view": "DISTANCE",
+            "workload": "MIXED",
+            "mode": "BASE",
+            "repetition": 2
+          },
+          "frames": 228,
+          "seconds": 2.000642,
+          "counters": {},
+          "scene": {
+            "loaded_item": 300,
+            "known_local_bounds_item": 300,
+            "loaded_block": 300,
+            "unique_block_states": 6,
+            "requested_model_changes": 0
+          }
+        }
+      ]
+    }
+  }
+}

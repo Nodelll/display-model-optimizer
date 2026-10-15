@@ -40,10 +40,10 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-  publish-0-7-1:
-    name: Publish 0.7.1
+  publish-0-8-0:
+    name: Publish 0.8.0 stable
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(github.event.head_commit.message, 'Release 0.7.1:')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(github.event.head_commit.message, 'Release 0.8.0:')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -69,12 +69,12 @@ jobs:
           from pathlib import Path
           import zipfile
 
-          jar = Path("build/libs/display-model-optimizer-0.7.1+mc26.3.jar")
+          jar = Path("build/libs/display-model-optimizer-0.8.0+mc26.3.jar")
           with zipfile.ZipFile(jar) as archive:
               assert archive.testzip() is None
               metadata = json.loads(archive.read("fabric.mod.json"))
               assert metadata["id"] == "display_model_optimizer"
-              assert metadata["version"] == "0.7.1+mc26.3"
+              assert metadata["version"] == "0.8.0+mc26.3"
               assert metadata["authors"] == ["Nodelll"]
               assert metadata["environment"] == "client"
               assert metadata["depends"]["minecraft"] == "26.3"
@@ -82,13 +82,14 @@ jobs:
           jar.with_suffix(".jar.sha256").write_text(digest + "  " + jar.name + "\n", encoding="utf-8")
           print("Verified release JAR SHA-256:", digest)
           PY
-      - name: Publish the beta release
+      - name: Publish the stable release
         run: |
-          gh release create v0.7.1 \
-            "build/libs/display-model-optimizer-0.7.1+mc26.3.jar" \
-            "build/libs/display-model-optimizer-0.7.1+mc26.3.jar.sha256" \
+          gh release create v0.8.0 \
+            "build/libs/display-model-optimizer-0.8.0+mc26.3.jar" \
+            "build/libs/display-model-optimizer-0.8.0+mc26.3.jar.sha256" \
+            "docs/MODRINTH.md" \
             --repo "$GH_REPO" \
             --target "$GITHUB_SHA" \
-            --title "Display Model Optimizer 0.7.1 — Settings crash fix (Beta)" \
-            --notes-file docs/releases/0.7.1.md \
-            --prerelease
+            --title "Display Model Optimizer 0.8.0 — Minecraft 26.3" \
+            --notes-file docs/releases/0.8.0.md \
+            --latest
