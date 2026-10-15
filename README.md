@@ -43,12 +43,6 @@ Off-screen culling uses Minecraft's normal camera frustum and works independentl
 
 The occlusion option uses the installed Entity Culling mod. Visibility follows its transparency rules; full opaque blocks can hide models, while glass and invisible barriers do not count as opaque walls. Animated item models, moving display entities and models with unknown bounds may remain visible.
 
-### Mod Menu
-
-The **General** tab contains the optimization switches and display distance; **Advanced** contains cache size and draw-index tuning; **About** shows versions, Entity Culling availability and project links. Tooltips explain every setting. Changes stay in a draft across tabs and window resizing until **Save**; **Cancel** or Escape discards them, and **Reset** restores defaults in the draft.
-
-The mod card includes translated name/summary/description, the icon, Nodelll as author, the MIT license, the automatic Client badge, website/source/issue links and additional download, changelog and guide links. The custom update checker uses public GitHub releases, filters binaries by the running Minecraft version, respects Mod Menu's enabled/disabled setting and release-channel preference, and opens the release page when selected. It does not install updates. Offline or rate-limited checks do not stop the game. See [Mod Menu integration details](docs/MOD_MENU.md).
-
 ## Build from source
 
 Install JDK 25 and Python 3, then run:
