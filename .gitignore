@@ -1,0 +1,15 @@
+# Generated build output and downloaded dependencies
+/build/
+/.gradle/
+/logs/
+/run/
+/out/
+__pycache__/
+*.pyc
+
+# Editors
+/.idea/
+*.iml
+/.vscode/
+.DS_Store
+Thumbs.db

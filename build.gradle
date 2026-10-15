@@ -1,0 +1,70 @@
+plugins {
+    id 'java'
+}
+
+group = 'dev.nodelll'
+version = '0.5.1+mc26.3'
+
+tasks.register('prepareDependencies', Exec) {
+    commandLine 'python3', 'build.py', '--deps-only'
+}
+
+dependencies {
+    compileOnly fileTree(dir: 'build/deps', include: '*.jar')
+    testImplementation fileTree(dir: 'build/deps', include: '*.jar')
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(25) }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    dependsOn prepareDependencies
+    options.encoding = 'UTF-8'
+    options.release = 25
+    options.compilerArgs.add('-proc:none')
+}
+
+jar {
+    archiveBaseName = 'display-model-optimizer'
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+    from('LICENSE')
+    manifest { attributes('Fabric-Loom-Remap': 'false') }
+}
+
+tasks.register('lookupChecks', JavaExec) {
+    dependsOn testClasses
+    javaLauncher = javaToolchains.launcherFor(java.toolchain)
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.nodelll.displaymodeloptimizer.DrawLookupIndexTest'
+    jvmArgs '-Xshare:off'
+}
+
+tasks.register('modelCacheChecks', JavaExec) {
+    dependsOn testClasses
+    javaLauncher = javaToolchains.launcherFor(java.toolchain)
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.nodelll.displaymodeloptimizer.ModelCacheTest'
+    jvmArgs '-Xshare:off'
+}
+
+check.dependsOn lookupChecks, modelCacheChecks
+
+tasks.register('settingsChecks', JavaExec) {
+    dependsOn testClasses
+    javaLauncher = javaToolchains.launcherFor(java.toolchain)
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.nodelll.displaymodeloptimizer.SettingsTest'
+    jvmArgs '-Xshare:off'
+}
+check.dependsOn settingsChecks
+
+tasks.register('boundsChecks', JavaExec) {
+    dependsOn testClasses
+    javaLauncher = javaToolchains.launcherFor(java.toolchain)
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.nodelll.displaymodeloptimizer.BoundsTest'
+    jvmArgs '-Xshare:off'
+}
+check.dependsOn boundsChecks

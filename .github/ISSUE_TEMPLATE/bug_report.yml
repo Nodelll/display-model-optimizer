@@ -1,0 +1,28 @@
+name: Bug report / Ошибка
+description: Report a crash, rendering problem or settings issue.
+labels: [bug]
+body:
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Minecraft, Fabric Loader, Java and Display Model Optimizer versions.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Rendering environment
+      description: Entity Culling, Mod Menu, renderer mods, shaders and relevant resource packs.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What did you do, what happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Attach relevant evidence; remove private information before posting.

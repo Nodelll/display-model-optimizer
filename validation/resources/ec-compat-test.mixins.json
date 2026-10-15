@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8.7",
+  "package": "dev.tr7zw.entityculling.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["EntityRendererMixin", "WorldRendererMixin"],
+  "injectors": {"defaultRequire": 1}
+}

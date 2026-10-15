@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "display_model_optimizer",
+  "version": "0.5.1+mc26.3",
+  "name": "Display Model Optimizer",
+  "description": "Оптимизирует отрисовку сущностей item_display и block_display с помощью кэширования моделей блоков, ограничения дальности и скрытия за блоками через Entity Culling.",
+  "icon": "assets/display_model_optimizer/icon.png",
+  "authors": ["Nodelll"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.nodelll.displaymodeloptimizer.DisplayModelOptimizerClient"],
+    "modmenu": ["dev.nodelll.displaymodeloptimizer.compat.DisplayModelOptimizerModMenu"]
+  },
+  "mixins": ["display-model-optimizer.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3",
+    "java": ">=25"
+  },
+  "suggests": {"modmenu": ">=21.0.0", "entityculling": ">=1.11.0"}
+}
