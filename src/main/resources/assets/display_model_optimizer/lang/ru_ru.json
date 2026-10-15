@@ -1,7 +1,7 @@
 {
   "modmenu.nameTranslation.display_model_optimizer": "Display Model Optimizer",
-  "modmenu.descriptionTranslation.display_model_optimizer": "Оптимизирует отрисовку сущностей item_display и block_display с помощью кэширования моделей блоков, ограничения дальности и скрытия за блоками через Entity Culling.",
-  "modmenu.summaryTranslation.display_model_optimizer": "Оптимизирует отрисовку сущностей item_display и block_display с помощью кэширования моделей блоков, ограничения дальности и скрытия за блоками через Entity Culling.",
+  "modmenu.descriptionTranslation.display_model_optimizer": "Оптимизирует отрисовку item_display и block_display кэшированием моделей, ограничением дальности, отсечением вне кадра и скрытием за блоками через Entity Culling.",
+  "modmenu.summaryTranslation.display_model_optimizer": "Оптимизирует отрисовку item_display и block_display кэшированием моделей, ограничением дальности, отсечением вне кадра и скрытием за блоками через Entity Culling.",
   "display_model_optimizer.config.title": "Display Model Optimizer — настройки",
   "display_model_optimizer.option.enabled": "Оптимизация",
   "display_model_optimizer.option.enabled.tooltip": "Включить оптимизацию отрисовки item_display и block_display и ограничение их дальности.",
@@ -37,5 +37,7 @@
   "display_model_optimizer.link.releases": "Скачать мод",
   "display_model_optimizer.link.changelog": "История изменений",
   "display_model_optimizer.link.guide": "Инструкция",
-  "display_model_optimizer.update.available": "Доступен Display Model Optimizer %s"
+  "display_model_optimizer.update.available": "Доступен Display Model Optimizer %s",
+  "display_model_optimizer.option.offscreen": "Скрывать модели вне кадра",
+  "display_model_optimizer.option.offscreen.tooltip": "Использовать реальные границы item_display и block_display для отсечения вне поля зрения камеры. Работает без Entity Culling. Неизвестные и анимированные модели остаются видимыми."
 }

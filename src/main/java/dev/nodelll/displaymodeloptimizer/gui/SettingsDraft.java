@@ -14,7 +14,7 @@ public final class SettingsDraft {
     }
 
     private final EnumMap<NumberOption, String> numbers = new EnumMap<>(NumberOption.class);
-    private boolean enabled, cacheModels, occlusion;
+    private boolean enabled, cacheModels, occlusion, offscreen;
 
     public SettingsDraft(SettingsValues values) { restore(values); }
     public boolean enabled() { return enabled; }
@@ -23,6 +23,8 @@ public final class SettingsDraft {
     public void cacheModels(boolean value) { cacheModels = value; }
     public boolean occlusion() { return occlusion; }
     public void occlusion(boolean value) { occlusion = value; }
+    public boolean offscreen() { return offscreen; }
+    public void offscreen(boolean value) { offscreen = value; }
     public String text(NumberOption option) { return numbers.get(option); }
     public void text(NumberOption option, String text) { numbers.put(option, text); }
     public void reset() { restore(SettingsValues.DEFAULTS); }
@@ -31,6 +33,7 @@ public final class SettingsDraft {
         enabled = values.enabled();
         cacheModels = values.cacheBlockDisplayModels();
         occlusion = values.cullOccludedDisplays();
+        offscreen = values.cullOffscreenDisplays();
         numbers.put(NumberOption.DISTANCE, Integer.toString(values.displayRenderDistance()));
         numbers.put(NumberOption.MODEL_LIMIT, Integer.toString(values.modelCacheLimit()));
         numbers.put(NumberOption.MINIMUM_SIZE, Integer.toString(values.minimumListSize()));
@@ -51,7 +54,7 @@ public final class SettingsDraft {
     public SettingsValues values() {
         if (!isValid()) throw new IllegalStateException("Invalid settings draft");
         return new SettingsValues(enabled, number(NumberOption.MINIMUM_SIZE), number(NumberOption.VERIFY_EVERY),
-                cacheModels, number(NumberOption.MODEL_LIMIT), number(NumberOption.DISTANCE), occlusion);
+                cacheModels, number(NumberOption.MODEL_LIMIT), number(NumberOption.DISTANCE), occlusion, offscreen);
     }
 
     private int number(NumberOption option) { return Integer.parseInt(text(option)); }

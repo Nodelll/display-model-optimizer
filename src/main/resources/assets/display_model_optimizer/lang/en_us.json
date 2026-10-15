@@ -1,7 +1,7 @@
 {
   "modmenu.nameTranslation.display_model_optimizer": "Display Model Optimizer",
-  "modmenu.descriptionTranslation.display_model_optimizer": "Optimizes item_display and block_display rendering with block model caching, a distance limit, and occlusion culling through Entity Culling.",
-  "modmenu.summaryTranslation.display_model_optimizer": "Optimizes item_display and block_display rendering with block model caching, a distance limit, and occlusion culling through Entity Culling.",
+  "modmenu.descriptionTranslation.display_model_optimizer": "Optimizes item_display and block_display rendering with model caching, distance limits, off-screen culling, and optional occlusion through Entity Culling.",
+  "modmenu.summaryTranslation.display_model_optimizer": "Optimizes item_display and block_display rendering with model caching, distance limits, off-screen culling, and optional occlusion through Entity Culling.",
   "display_model_optimizer.config.title": "Display Model Optimizer — Settings",
   "display_model_optimizer.option.enabled": "Optimization",
   "display_model_optimizer.option.enabled.tooltip": "Enable rendering optimization and the item_display and block_display distance limit.",
@@ -37,5 +37,7 @@
   "display_model_optimizer.link.releases": "Downloads",
   "display_model_optimizer.link.changelog": "Changelog",
   "display_model_optimizer.link.guide": "User guide",
-  "display_model_optimizer.update.available": "Display Model Optimizer %s is available"
+  "display_model_optimizer.update.available": "Display Model Optimizer %s is available",
+  "display_model_optimizer.option.offscreen": "Hide off-screen models",
+  "display_model_optimizer.option.offscreen.tooltip": "Use actual model bounds to skip item_display and block_display outside the camera view. Works without Entity Culling. Unknown or animated model bounds remain visible."
 }

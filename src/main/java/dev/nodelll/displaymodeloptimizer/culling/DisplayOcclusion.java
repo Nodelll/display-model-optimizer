@@ -19,9 +19,16 @@ public final class DisplayOcclusion {
     private DisplayOcclusion() {}
 
     public static void invalidateAll() { GENERATION.incrementAndGet(); }
+    public static boolean frustumActive() {
+        return OptimizerSettings.isEnabled() && OptimizerSettings.current().cullOffscreenDisplays();
+    }
     public static boolean active() {
         return OptimizerSettings.isEnabled() && OptimizerSettings.current().cullOccludedDisplays()
                 && EntityCullingCompat.available();
+    }
+    private static boolean boundsActive() { return frustumActive() || active(); }
+    public static boolean supports(Display display) {
+        return display instanceof Display.ItemDisplay || display instanceof Display.BlockDisplay;
     }
 
     private static Object model(Display display) {
@@ -41,11 +48,14 @@ public final class DisplayOcclusion {
     }
 
     public static void captureItem(Display.ItemDisplay entity, ItemDisplayEntityRenderState state) {
-        if (!active()) return;
+        if (!boundsActive()) return;
         DisplayBoundsCache cache = cache(entity);
         Object model = model(entity), context = context(entity);
         long generation = GENERATION.get();
-        if (cache.matches(model, context, generation)) return;
+        if (cache.matches(model, context, generation)) {
+            publishForOcclusion(entity);
+            return;
+        }
         BoundsMath.Box local = null;
         try {
             if (!state.item.isEmpty() && !state.item.isAnimated()) {
@@ -58,14 +68,18 @@ public final class DisplayOcclusion {
         } catch (RuntimeException ignored) { /* Unknown model data stays visible. */ }
         cache.capture(model, context, generation, local);
         EntityCullingCompat.showUntilRefreshed(entity);
+        publishForOcclusion(entity);
     }
 
     public static void captureBlock(Display.BlockDisplay entity, BlockDisplayEntityRenderState state) {
-        if (!active()) return;
+        if (!boundsActive()) return;
         DisplayBoundsCache cache = cache(entity);
         Object model = model(entity);
         long generation = GENERATION.get();
-        if (cache.matches(model, null, generation)) return;
+        if (cache.matches(model, null, generation)) {
+            publishForOcclusion(entity);
+            return;
+        }
         BoundsMath.Box local = null;
         try {
             BlockModelStateAccessor access = (BlockModelStateAccessor) state.blockModel;
@@ -96,6 +110,12 @@ public final class DisplayOcclusion {
         } catch (RuntimeException ignored) { /* Unknown model data stays visible. */ }
         cache.capture(model, null, generation, local);
         EntityCullingCompat.showUntilRefreshed(entity);
+        publishForOcclusion(entity);
+    }
+
+    private static void publishForOcclusion(Display entity) {
+        // The optional worker still needs a published pose when vanilla frustum checks are disabled.
+        if (!frustumActive() && active()) bounds(entity);
     }
 
     private static void collectQuads(BoundsMath.Collector target,
@@ -104,14 +124,14 @@ public final class DisplayOcclusion {
     }
 
     public static AABB bounds(Display entity) {
-        if (!active() || !(entity instanceof Display.ItemDisplay || entity instanceof Display.BlockDisplay)) return null;
+        if (!boundsActive() || !supports(entity)) return null;
         DisplayBoundsCache cache = cache(entity);
         var geometry = cache.geometry();
         if (geometry == null || geometry.generation() != GENERATION.get() || geometry.box() == null) return null;
         // Entity Culling's normal capture runs on the game thread. Its unsafe mode gets only our published snapshot.
         if (!Minecraft.getInstance().isSameThread()) {
             var pose = cache.pose();
-            return pose == null ? null : toAabb(pose.box());
+            return pose == null ? null : pose.aabb();
         }
         if (!cache.matches(model(entity), context(entity), GENERATION.get())) return null;
         double x = entity.getX(), y = entity.getY(), z = entity.getZ();
@@ -127,7 +147,7 @@ public final class DisplayOcclusion {
         var previous = cache.pose();
         if (previous != null && previous.state() == state && previous.x() == x && previous.y() == y && previous.z() == z
                 && previous.yaw0() == yaw0 && previous.yaw1() == yaw1
-                && previous.pitch0() == pitch0 && previous.pitch1() == pitch1) return toAabb(previous.box());
+                && previous.pitch0() == pitch0 && previous.pitch1() == pitch1) return previous.aabb();
         BoundsMath.Box box;
         try {
             Transformation first = state.transformation().get(0);
@@ -144,12 +164,9 @@ public final class DisplayOcclusion {
             if (box == null || !box.valid()) return null;
             box = box.move(x, y, z).expand(0.03);
         } catch (RuntimeException ignored) { return null; }
-        cache.pose(new DisplayBoundsCache.Pose(state, x, y, z, yaw0, yaw1, pitch0, pitch1, box));
+        var pose = new DisplayBoundsCache.Pose(state, x, y, z, yaw0, yaw1, pitch0, pitch1, box);
+        cache.pose(pose);
         EntityCullingCompat.showUntilRefreshed(entity);
-        return toAabb(box);
-    }
-
-    private static AABB toAabb(BoundsMath.Box box) {
-        return new AABB(box.minX(), box.minY(), box.minZ(), box.maxX(), box.maxY(), box.maxZ());
+        return pose.aabb();
     }
 }

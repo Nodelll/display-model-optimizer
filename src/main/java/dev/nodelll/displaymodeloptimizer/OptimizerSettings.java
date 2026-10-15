@@ -23,7 +23,8 @@ public final class OptimizerSettings {
 
     public static synchronized void save(SettingsValues values) throws IOException {
         SettingsStore.save(FILE, values);
-        if (current.enabled() != values.enabled() || current.cullOccludedDisplays() != values.cullOccludedDisplays())
+        if (current.enabled() != values.enabled() || current.cullOccludedDisplays() != values.cullOccludedDisplays()
+                || current.cullOffscreenDisplays() != values.cullOffscreenDisplays())
             DisplayOcclusion.invalidateAll();
         current = values;
     }
@@ -38,7 +39,7 @@ public final class OptimizerSettings {
 
     public static void logStartup() {
         LOG.log(System.Logger.Level.INFO,
-                "[Display Model Optimizer] 0.6.0+mc26.3 by Nodelll: " + current);
+                "[Display Model Optimizer] 0.7.0+mc26.3 by Nodelll: " + current);
     }
 
     private static SettingsValues load() {

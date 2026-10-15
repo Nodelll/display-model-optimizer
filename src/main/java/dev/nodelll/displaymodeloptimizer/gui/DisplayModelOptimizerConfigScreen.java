@@ -85,10 +85,14 @@ public final class DisplayModelOptimizerConfigScreen extends Screen {
                 .create(left, top + 22, contentWidth, 20, Component.translatable("display_model_optimizer.option.cache_models"),
                         (button, value) -> draft.cacheModels(value))).setValue(draft.cacheModels());
         addRenderableWidget(CycleButton.onOffBuilder(true)
+                .withTooltip(value -> Tooltip.create(Component.translatable("display_model_optimizer.option.offscreen.tooltip")))
+                .create(left, top + 44, contentWidth, 20, Component.translatable("display_model_optimizer.option.offscreen"),
+                        (button, value) -> draft.offscreen(value))).setValue(draft.offscreen());
+        addRenderableWidget(CycleButton.onOffBuilder(true)
                 .withTooltip(value -> Tooltip.create(Component.translatable("display_model_optimizer.option.occlusion.tooltip")))
-                .create(left, top + 44, contentWidth, 20, Component.translatable("display_model_optimizer.option.occlusion"),
+                .create(left, top + 66, contentWidth, 20, Component.translatable("display_model_optimizer.option.occlusion"),
                         (button, value) -> draft.occlusion(value))).setValue(draft.occlusion());
-        addNumber(SettingsDraft.NumberOption.DISTANCE, 3);
+        addNumber(SettingsDraft.NumberOption.DISTANCE, 4);
     }
 
     private void addNumber(SettingsDraft.NumberOption option, int row) {
@@ -143,7 +147,7 @@ public final class DisplayModelOptimizerConfigScreen extends Screen {
         var text = graphics.textRenderer();
         text.accept(TextAlignment.CENTER, width / 2, 14, title);
         if (page == Page.GENERAL) {
-            text.accept(TextAlignment.LEFT, left, top + 71, Component.translatable(SettingsDraft.NumberOption.DISTANCE.key));
+            text.accept(TextAlignment.LEFT, left, top + 93, Component.translatable(SettingsDraft.NumberOption.DISTANCE.key));
         } else if (page == Page.ADVANCED) {
             int row = 0;
             for (SettingsDraft.NumberOption option : SettingsDraft.NumberOption.values()) {

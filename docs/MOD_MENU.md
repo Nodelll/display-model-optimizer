@@ -1,6 +1,6 @@
 # Mod Menu integration
 
-Display Model Optimizer 0.6.0 targets the official **Mod Menu 21.0.0 API for Minecraft 26.3**. Mod Menu remains optional. No separate configuration library is needed.
+Display Model Optimizer 0.7.0 targets the official **Mod Menu 21.0.0 API for Minecraft 26.3**. Mod Menu remains optional. No separate configuration library is needed.
 
 ## Mod card
 
@@ -21,13 +21,13 @@ The mod is a standalone client optimization tool. Library/deprecated badges, par
 
 | Tab | Contents |
 | --- | --- |
-| General | Main switch, block model cache, occlusion option, display distance |
+| General | Main switch, block model cache, off-screen culling, occlusion option, display distance |
 | Advanced | Model cache capacity, draw-index threshold and verification interval |
 | About | Installed mod/Mod Menu versions, author, Entity Culling availability and version, project links |
 
 Every option has an English/Russian tooltip. Vanilla buttons and edit boxes provide keyboard focus and narration; the screen narration also includes the current tab and validation status. Changes stay in a single draft across tabs and resizing. Save validates the entire draft, including hidden fields, and uses the existing atomic settings writer. Cancel and Escape discard edits. Reset changes the draft only.
 
-The configuration format remains the same seven properties. The default distance remains **18 blocks**; existing explicit values are preserved.
+The configuration has eight properties; seven-property configurations upgrade automatically while preserving existing values. Off-screen culling is independent of Entity Culling and the occlusion switch. The default distance remains **18 blocks**; existing explicit values are preserved.
 
 ## Updates
 
@@ -43,7 +43,7 @@ This custom source works before a Modrinth project exists and replaces Mod Menu'
 
 Интеграция включает локализованную карточку мода, логотип, автора Nodelll, лицензию MIT, стандартный значок клиентского мода, ссылки на сайт, исходники, ошибки, скачивание, историю изменений и инструкцию.
 
-Экран настроек разделён на **«Основное»**, **«Дополнительно»** и **«О моде»**. Сохранены все семь параметров, подсказки, проверка значений, сохранение, отмена и сброс. Редактирование на разных вкладках относится к одному черновику. Дальность по умолчанию — **18 блоков**, настройки предыдущей версии сохраняются.
+Экран настроек разделён на **«Основное»**, **«Дополнительно»** и **«О моде»**. Доступны все восемь параметров, подсказки, проверка значений, сохранение, отмена и сброс. Редактирование на разных вкладках относится к одному черновику. Дальность по умолчанию — **18 блоков**, настройки предыдущей версии сохраняются. Новый переключатель «Скрывать модели вне кадра» работает независимо от Entity Culling и скрытия за блоками.
 
 Уведомления об обновлениях поступают из релизов GitHub. Учитываются запущенная версия Minecraft и выбранный в Mod Menu канал обновлений. Отключение проверки в Mod Menu распространяется и на наш мод. При выборе обновления открывается страница релиза, самостоятельной установки файлов нет. Ошибки сети не мешают игре. Дополнительные библиотеки настроек не нужны; Mod Menu и Entity Culling остаются необязательными.
 

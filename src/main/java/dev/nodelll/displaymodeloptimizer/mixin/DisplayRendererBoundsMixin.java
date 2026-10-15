@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class DisplayRendererBoundsMixin {
     @Inject(method = "affectedByCulling(Lnet/minecraft/world/entity/Display;)Z", at = @At("HEAD"), cancellable = true)
     private void displayModelOptimizer$enableDisplayCulling(Display entity, CallbackInfoReturnable<Boolean> ci) {
-        if (DisplayOcclusion.active() && (entity instanceof Display.ItemDisplay || entity instanceof Display.BlockDisplay))
+        if (DisplayOcclusion.frustumActive() && DisplayOcclusion.supports(entity))
             ci.setReturnValue(DisplayOcclusion.bounds(entity) != null);
     }
     @Inject(method = "getBoundingBoxForCulling(Lnet/minecraft/world/entity/Display;F)Lnet/minecraft/world/phys/AABB;", at = @At("HEAD"), cancellable = true)
     private void displayModelOptimizer$useModelBounds(Display entity, float partialTick, CallbackInfoReturnable<AABB> ci) {
-        AABB box = DisplayOcclusion.bounds(entity);
+        AABB box = DisplayOcclusion.frustumActive() ? DisplayOcclusion.bounds(entity) : null;
         if (box != null) ci.setReturnValue(box);
     }
 }

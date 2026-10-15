@@ -48,10 +48,22 @@ public final class MixinSmokeTest {
         advancePhase.invoke(null, MixinEnvironment.Phase.DEFAULT);
         IMixinTransformer transformer = (IMixinTransformer) MixinEnvironment.getCurrentEnvironment().getActiveTransformer();
         if (transformer == null) throw new AssertionError("Mixin transformer was not initialized");
-        if (args.length > 4) {
-            checkAdditionalTarget(transformer, game, "net.minecraft.client.renderer.entity.EntityRenderer", (oldClass, newClass) -> {
+        checkAdditionalTarget(transformer, game, "net.minecraft.client.renderer.entity.EntityRenderer", (oldClass, newClass) -> {
+            require(calls(method(oldClass, "shouldRender"), "net/minecraft/client/renderer/culling/Frustum", "isVisible")
+                    == calls(method(newClass, "shouldRender"), "net/minecraft/client/renderer/culling/Frustum", "isVisible"),
+                    "Original vanilla frustum calls removed");
+            if (args.length > 4) {
                 require(newClass.interfaces.contains("dev/tr7zw/entityculling/access/EntityRendererInter"), "Actual Entity Culling renderer bridge did not apply");
-            });
+                require(hookCalls(method(newClass, "entityCullingIgnoresCulling"), "displayModelOptimizer$occlusionEligibility") == 1,
+                        "Optional occlusion eligibility hook did not apply");
+                require(hookCalls(method(newClass, "entityCullingGetCullingBox"), "displayModelOptimizer$occlusionBounds") == 1,
+                        "Optional model-box hook did not apply");
+            } else {
+                require(newClass.methods.stream().noneMatch(m -> m.name.startsWith("entityCulling")),
+                        "Optional Entity Culling API must stay absent without the mod");
+            }
+        });
+        if (args.length > 4) {
             checkAdditionalTarget(transformer, game, "net.minecraft.client.renderer.extract.LevelExtractor", (oldClass, newClass) -> {
                 require(newClass.methods.stream().anyMatch(m -> m.name.contains("extractEntityRedir")), "Actual Entity Culling extraction hook missing");
             });
@@ -121,6 +133,10 @@ public final class MixinSmokeTest {
         checkAdditionalTarget(transformer, game, "net.minecraft.client.renderer.entity.DisplayRenderer", (oldClass, newClass) -> {
             require(newClass.methods.stream().filter(m -> calls(m, "dev/nodelll/displaymodeloptimizer/culling/DisplayOcclusion", "bounds") == 1).count() == 2,
                     "Missing visibility eligibility or model-box hook");
+            require(newClass.methods.stream().filter(m -> calls(m, "dev/nodelll/displaymodeloptimizer/culling/DisplayOcclusion", "frustumActive") == 1).count() == 2,
+                    "Vanilla frustum hooks must use their independent switch");
+            require(newClass.methods.stream().noneMatch(m -> calls(m, "dev/nodelll/displaymodeloptimizer/culling/DisplayOcclusion", "active") > 0),
+                    "Vanilla frustum must not depend on Entity Culling occlusion eligibility");
             require(calls(method(newClass, "getBoundingBoxForCulling"), "net/minecraft/world/entity/Display", "getInterpolatedBoundingBox") == 1,
                     "Original culling-box fallback removed");
         });
@@ -208,6 +224,13 @@ public final class MixinSmokeTest {
         for (var instruction : node.instructions) {
             if (instruction instanceof MethodInsnNode call && call.owner.equals(owner) && call.name.equals(name)) count++;
         }
+        return count;
+    }
+
+    private static long hookCalls(MethodNode node, String fragment) {
+        long count = 0;
+        for (var instruction : node.instructions)
+            if (instruction instanceof MethodInsnNode call && call.name.contains(fragment)) count++;
         return count;
     }
 

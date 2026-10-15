@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.0 — 2026-10-15
+
+- Enable vanilla camera-frustum culling for item and block displays using their actual cached model bounds, including displays whose server width/height are zero.
+- Make off-screen culling work without Entity Culling, with an independent `cullOffscreenDisplays` switch enabled by default.
+- Keep wall occlusion independent through optional Entity Culling renderer bridge hooks; verify transformation with and without the mod.
+- Reuse immutable cached world-space AABBs for unchanged poses and keep conservative bounds for large, transformed and interpolated models.
+- Upgrade seven-option configurations to eight while retaining preferences, unknown UTF-8 properties and the 18-block distance default.
+- Add official Minecraft Frustum scenes for visible parts of large custom models and camera turns.
+
 ## 0.6.0 — 2026-10-15
 
 - Expand Mod Menu configuration into General, Advanced and About tabs while retaining all seven options, draft validation, save/cancel/reset and the 18-block distance default.

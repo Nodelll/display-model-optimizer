@@ -36,7 +36,7 @@ public final class SettingsStore {
                 Properties values;
                 try { values = read(candidate); }
                 catch (IOException ignored) { continue; }
-                if (!values.keySet().containsAll(SettingsValues.KEYS)) continue;
+                if (!values.keySet().containsAll(SettingsValues.TRANSFER_KEYS)) continue;
                 // A complete, unique key set identifies a previous configuration without depending on its filename.
                 if (match != null) return new Properties();
                 match = values;

@@ -22,6 +22,7 @@ public final class SettingsTest {
             SettingsValues migrated = SettingsStore.load(file);
             check(!migrated.enabled() && migrated.minimumListSize() == 64 && migrated.verifyEvery() == 0, "Old preferences retained");
             check(migrated.cacheBlockDisplayModels() && migrated.displayRenderDistance() == 18, "New defaults appended");
+            check(migrated.cullOffscreenDisplays(), "Off-screen culling defaults on for an existing configuration");
             Properties contents = properties(file);
             check(contents.keySet().containsAll(SettingsValues.KEYS), "Migration writes all known keys");
             check("Сохранить ё".equals(contents.getProperty("customNote")), "Unknown UTF-8 property preserved");
@@ -42,6 +43,10 @@ public final class SettingsTest {
             check(!draft.values().cullOccludedDisplays() && wanted.cullOccludedDisplays(), "Occlusion switch remains a draft until save");
             SettingsStore.save(file, draft.values());
             check(!SettingsStore.load(file).cullOccludedDisplays(), "Occlusion switch survives save and reload");
+            draft.offscreen(false);
+            check(!draft.values().cullOffscreenDisplays() && wanted.cullOffscreenDisplays(), "Off-screen edits remain local to the draft");
+            SettingsStore.save(file, draft.values());
+            check(!SettingsStore.load(file).cullOffscreenDisplays(), "Off-screen switch survives save and reload");
             SettingsStore.save(file, wanted);
             for (String invalid : new String[]{"", "-1", "3.2", "x", "9999999", "1025"}) {
                 draft.text(NumberOption.DISTANCE, invalid);
@@ -60,6 +65,7 @@ public final class SettingsTest {
             }
             check(draft.values().equals(SettingsValues.DEFAULTS), "Reset affects all draft fields");
             check(draft.values().cullOccludedDisplays(), "Reset restores display occlusion default");
+            check(draft.values().cullOffscreenDisplays(), "Reset restores off-screen culling default");
             check(SettingsStore.load(file).equals(wanted), "Reset draft does not save implicitly");
 
             Properties malformedNumbers = new Properties();
@@ -90,6 +96,7 @@ public final class SettingsTest {
             check(index.usesSettings(32, 256) && !index.usesSettings(64, 256)
                     && !index.usesSettings(32, 0), "Changed lookup options require a new index");
             checkRenamedConfigMigration(folder);
+            checkSevenOptionUpgrade(folder);
         } finally {
             try (var paths = Files.walk(folder)) {
                 for (Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) Files.delete(path);
@@ -143,6 +150,31 @@ public final class SettingsTest {
         var result = new Properties();
         try (Reader reader = Files.newBufferedReader(file, StandardCharsets.UTF_8)) { result.load(reader); }
         return result;
+    }
+
+    private static void checkSevenOptionUpgrade(Path folder) throws Exception {
+        Path oldFolder = Files.createDirectory(folder.resolve("seven-options"));
+        Path oldFile = oldFolder.resolve("previous-settings.properties");
+        Files.writeString(oldFile, "enabled=true\nminimumListSize=64\nverifyEvery=512\ncacheBlockDisplayModels=false\n"
+                + "modelCacheLimit=2048\ndisplayRenderDistance=48\ncullOccludedDisplays=false\ncustomNote=Сохранить ё\n");
+        byte[] original = Files.readAllBytes(oldFile);
+        Path file = oldFolder.resolve("display-model-optimizer.properties");
+        SettingsValues upgraded = SettingsStore.load(file);
+        check(upgraded.displayRenderDistance() == 48 && !upgraded.cullOccludedDisplays() && upgraded.cullOffscreenDisplays(),
+                "Complete seven-option file transfers preferences and appends off-screen default");
+        check(java.util.Arrays.equals(original, Files.readAllBytes(oldFile)), "Seven-option transfer retains original source");
+        check("Сохранить ё".equals(properties(file).getProperty("customNote")), "Seven-option transfer preserves unknown UTF-8 data");
+        check(properties(file).keySet().containsAll(SettingsValues.KEYS), "Upgraded configuration contains all eight options");
+        for (boolean offscreen : new boolean[]{false, true}) for (boolean occlusion : new boolean[]{false, true}) {
+            SettingsValues wanted = new SettingsValues(true, 64, 512, false, 2048, 48, occlusion, offscreen);
+            SettingsStore.save(file, wanted);
+            check(SettingsStore.load(file).equals(wanted), "Independent visibility switches round-trip: " + offscreen + "/" + occlusion);
+        }
+        Properties stored = properties(file);
+        stored.remove("cullOffscreenDisplays");
+        try (var writer = Files.newBufferedWriter(file)) { stored.store(writer, "previous version"); }
+        check(SettingsStore.load(file).cullOffscreenDisplays(), "Same-name seven-option file receives the new default");
+        check("Сохранить ё".equals(properties(file).getProperty("customNote")), "Same-name upgrade preserves custom data");
     }
 
     private static void check(boolean valid, String message) {

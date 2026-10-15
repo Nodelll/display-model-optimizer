@@ -15,6 +15,7 @@ Display Model Optimizer reduces repeated rendering work for `item_display` and `
 - **Block model caching:** prepares identical supported block models once per frame.
 - **Faster draw-group lookups:** reduces the cost of grouping models for rendering.
 - **Configurable display distance:** an additional render-distance limit of **18 blocks by default**.
+- **Off-screen culling:** actual model bounds let Minecraft skip item and block displays outside the camera view, independently of Entity Culling.
 - **Entity Culling integration:** supplies model bounds so fully occluded displays can be hidden behind opaque blocks.
 - **Mod Menu integration:** English/Russian settings tabs, project and download links, dependency status and compatible GitHub update notifications.
 
@@ -37,6 +38,8 @@ Install the mod on the **client**. Model caching, draw lookups and the distance 
 3. Open **Mod Menu → Display Model Optimizer**, or edit `config/display-model-optimizer.properties` manually and restart the game.
 
 **The default maximum display range is 18 blocks.** Increase `displayRenderDistance` for more distant models, or set it to **0** to keep the original game/server range. The limit applies to both `item_display` and `block_display`.
+
+Off-screen culling uses Minecraft's normal camera frustum and works independently of Entity Culling. The new `cullOffscreenDisplays` option is enabled by default and is separate from `cullOccludedDisplays`. Actual model extents, transformations and conservative interpolation bounds determine visibility. See [culling details](docs/CULLING.md).
 
 The occlusion option uses the installed Entity Culling mod. Visibility follows its transparency rules; full opaque blocks can hide models, while glass and invisible barriers do not count as opaque walls. Animated item models, moving display entities and models with unknown bounds may remain visible.
 
