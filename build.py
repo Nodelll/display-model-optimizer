@@ -13,8 +13,14 @@ ROOT = Path(__file__).resolve().parent
 DEPS = ROOT / "build" / "deps"
 CLASSES = ROOT / "build" / "classes"
 TEST_CLASSES = ROOT / "build" / "test-classes"
-VERSION = "0.7.1+mc26.3"
+VERSION = "0.8.0-alpha.1+mc26.3"
 DEPENDENCIES = [
+    ("asm.jar", "https://maven.fabricmc.net/org/ow2/asm/asm/9.11/asm-9.11.jar",
+     "5fe3b469b8646e5bc53a897840952d63b712d4923d2a7a26aebc585f1fec7676"),
+    ("fabric-renderer-api.jar", "https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-renderer-api-v1/17.0.16+79385d0b5d/fabric-renderer-api-v1-17.0.16+79385d0b5d.jar",
+     "424ed34187cdcdf58c705dcf8ed670fa7125f722395d089f11e2c80645f198cd"),
+    ("asm-tree.jar", "https://maven.fabricmc.net/org/ow2/asm/asm-tree/9.11/asm-tree-9.11.jar",
+     "da8ad24d0bf7efb0674a906f59a7d441692b641718371f3bce6762b191a169fd"),
     ("fabric-loader.jar", "https://maven.fabricmc.net/net/fabricmc/fabric-loader/0.19.5/fabric-loader-0.19.5.jar",
      "93044e4dd46de5d8136701292f05e868da096d2c9fddb4793e4fdbcc63efc695"),
     ("sponge-mixin.jar", "https://maven.fabricmc.net/net/fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/sponge-mixin-0.17.5+mixin.0.8.7.jar",
@@ -96,6 +102,8 @@ def main():
                             "dev.nodelll.displaymodeloptimizer.DisplayFrustumTest"], check=True)
     subprocess.run(java() + ["-cp", str(TEST_CLASSES) + os.pathsep + str(CLASSES) + os.pathsep + classpath,
                             "dev.nodelll.displaymodeloptimizer.GuiBackgroundTest"], check=True)
+    subprocess.run(java() + ["-cp", str(TEST_CLASSES) + os.pathsep + str(CLASSES) + os.pathsep + classpath,
+                            "dev.nodelll.displaymodeloptimizer.GeometryCacheTest"], check=True)
     output = ROOT / "build" / "libs" / ("display-model-optimizer-" + VERSION + ".jar")
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "w") as archive:
@@ -116,7 +124,7 @@ def main():
         assert metadata["environment"] == "client"
         assert metadata["depends"]["minecraft"] == "26.3"
         assert metadata["version"] == VERSION
-        assert all(not name.startswith(("net/minecraft/", "org/spongepowered/", "it/unimi/", "com/terraformersmc/", "com/google/", "dev/tr7zw/", "com/logisticscraft/"))
+        assert all(not name.startswith(("net/minecraft/", "org/spongepowered/", "it/unimi/", "com/terraformersmc/", "com/google/", "dev/tr7zw/", "com/logisticscraft/", "net/fabricmc/", "org/objectweb/"))
                    for name in archive.namelist())
         assert not any("Test.class" in name for name in archive.namelist())
     print("Built:", output)

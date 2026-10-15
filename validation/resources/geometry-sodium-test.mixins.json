@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "net.caffeinemc.mods.sodium.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["frapi.MutableQuadViewImplMixin", "frapi.QuadViewImplMixin", "core.model.quad.BakedQuadMixin"],
+  "injectors": {"defaultRequire": 1}
+}

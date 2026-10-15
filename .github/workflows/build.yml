@@ -30,6 +30,8 @@ jobs:
           java-version: '25'
       - name: Build and run automated checks
         run: python3 build.py
+      - name: Verify renderer integration and optional dependencies
+        run: python3 validation/run_geometry_checks.py
       - name: Upload mod JAR
         uses: actions/upload-artifact@v7
         with:

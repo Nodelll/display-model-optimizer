@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "display_model_optimizer",
-  "version": "0.7.1+mc26.3",
+  "version": "0.8.0-alpha.1+mc26.3",
   "name": "Display Model Optimizer",
   "description": "Оптимизирует отрисовку item_display и block_display кэшированием моделей, ограничением дальности, отсечением вне кадра и скрытием за блоками через Entity Culling.",
   "icon": "assets/display_model_optimizer/icon.png",

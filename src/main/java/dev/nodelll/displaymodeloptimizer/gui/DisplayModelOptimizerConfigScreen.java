@@ -59,6 +59,10 @@ public final class DisplayModelOptimizerConfigScreen extends Screen {
             addNumber(SettingsDraft.NumberOption.MODEL_LIMIT, 0);
             addNumber(SettingsDraft.NumberOption.MINIMUM_SIZE, 1);
             addNumber(SettingsDraft.NumberOption.VERIFY_EVERY, 2);
+            addRenderableWidget(CycleButton.onOffBuilder(true)
+                    .withTooltip(value -> Tooltip.create(Component.translatable("display_model_optimizer.option.cache_geometry.tooltip")))
+                    .create(left, top + 66, contentWidth, 20, Component.translatable("display_model_optimizer.option.cache_geometry"),
+                            (button, value) -> draft.cacheGeometry(value))).setValue(draft.cacheGeometry());
         }
         if (page == Page.ABOUT) addProjectLinks();
         int buttonWidth = (contentWidth - 12) / 3;

@@ -13,7 +13,7 @@
   "display_model_optimizer.option.distance": "Дальность моделей",
   "display_model_optimizer.option.distance.tooltip": "0–1024 блока, по умолчанию 18. 0 — исходная дальность. Например, 18 скрывает item_display и block_display дальше 18 блоков; они появляются при приближении. Текстовые display-сущности используют исходную дальность.",
   "display_model_optimizer.option.model_limit": "Лимит кэша моделей",
-  "display_model_optimizer.option.model_limit.tooltip": "0–16384 комбинации моделей за кадр. По умолчанию 1024. 0 отключает хранение моделей.",
+  "display_model_optimizer.option.model_limit.tooltip": "0–16384 комбинаций моделей. По умолчанию: 1024. Отдельно ограничивает кэш на кадр и постоянный кэш геометрии. 0 отключает оба.",
   "display_model_optimizer.option.minimum_size": "Порог индекса групп",
   "display_model_optimizer.option.minimum_size.tooltip": "0–65536 состояний. По умолчанию 32. Малые группы используют обычный поиск.",
   "display_model_optimizer.option.verify_every": "Интервал проверки",
@@ -39,5 +39,7 @@
   "display_model_optimizer.link.guide": "Инструкция",
   "display_model_optimizer.update.available": "Доступен Display Model Optimizer %s",
   "display_model_optimizer.option.offscreen": "Скрывать модели вне кадра",
-  "display_model_optimizer.option.offscreen.tooltip": "Использовать реальные границы item_display и block_display для отсечения вне поля зрения камеры. Работает без Entity Culling. Неизвестные и анимированные модели остаются видимыми."
+  "display_model_optimizer.option.offscreen.tooltip": "Использовать реальные границы item_display и block_display для отсечения вне поля зрения камеры. Работает без Entity Culling. Неизвестные и анимированные модели остаются видимыми.",
+  "display_model_optimizer.option.cache_geometry": "Кэш геометрии block_display",
+  "display_model_optimizer.option.cache_geometry.tooltip": "Повторно использует преобразованную геометрию block_display между кадрами. Требуется Fabric Renderer API 17.0.16+. Модели без ключа геометрии готовятся обычным способом. Сброс при смене ресурсов, мира и графики."
 }

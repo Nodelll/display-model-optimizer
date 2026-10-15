@@ -1,106 +1,95 @@
 {
   "mod": "Display Model Optimizer",
-  "version": "0.7.1+mc26.3",
+  "version": "0.8.0-alpha.1+mc26.3",
   "author": "Nodelll",
+  "status": "experimental test build; no public release created",
   "target": {
     "minecraft": "26.3",
     "loader_minimum": "0.19.5",
     "runtime_java_minimum": 25,
     "compiled_release": 25
   },
-  "jar_sha256": "48851ab3dab7ced179c3b9a735d3bbd64cbc41ed6a18bcd5461a1c0371a3be9c",
+  "source_base_commit": "4abbf74b77092c8c70205ebad80a227f832555c0",
+  "source_branch": "feature/block-display-geometry-cache",
+  "jar_sha256": "36da6b798c134a71f64cb06f8a0bc877023d4233932596a792201f6ddfd29a62",
   "official_client_sha1": "e877b6a07acd633fb3bb475002175cec036e7b87",
-  "release": {
-    "tag": "v0.7.1",
-    "url": "https://github.com/Nodelll/display-model-optimizer/releases/tag/v0.7.1",
-    "source_commit": "89af96b41273e5d838638d2c8494391a1acb21b2",
-    "published_at": "2026-10-15T14:44:15Z",
-    "asset_name": "display-model-optimizer-0.7.1+mc26.3.jar",
-    "asset_size_bytes": 127284,
-    "asset_url": "https://github.com/Nodelll/display-model-optimizer/releases/download/v0.7.1/display-model-optimizer-0.7.1%2Bmc26.3.jar",
-    "checksum_url": "https://github.com/Nodelll/display-model-optimizer/releases/download/v0.7.1/display-model-optimizer-0.7.1%2Bmc26.3.jar.sha256"
+  "local_validation": {
+    "date": "2026-10-15",
+    "java": "Zulu OpenJDK 25.0.4.1+1",
+    "os": "Linux x86_64 container",
+    "commands": [
+      "python3 build.py",
+      "python3 validation/run_geometry_checks.py --benchmark"
+    ],
+    "automated_suite_count": 8,
+    "total_assertions": 197833,
+    "checks": {
+      "lookup_assertions": 180346,
+      "model_cache_and_distance_assertions": 28,
+      "settings_assertions": 76,
+      "bounds_and_entityculling_scene_assertions": 9614,
+      "github_release_feed_assertions": 33,
+      "actual_minecraft_frustum_assertions": 236,
+      "gui_background_assertions": 135,
+      "persistent_geometry_cache_assertions": 7365,
+      "actual_sodium_mesh_parity_assertions": 129,
+      "dependency_checksums": "passed",
+      "jar_metadata": "passed",
+      "jar_contents": "passed: production classes only; no third-party classes or test fixtures bundled",
+      "jar_crc": "passed",
+      "mixin_without_renderer_api": "passed against official Minecraft 26.3, API and Sodium binaries absent",
+      "mixin_with_entityculling": "passed with original Entity Culling 1.11.3 mixins",
+      "mixin_with_frapi": "passed with actual FRAPI 17.0.16 wrapper overwrite; one cache redirect, current tint/setup calls preserved",
+      "method_stack_verification": "passed",
+      "transformed_model_state_copy": "passed; destination block light preserved"
+    },
+    "settings_count": 9,
+    "default_display_distance_blocks": 18,
+    "renderer_api": "17.0.16+79385d0b5d",
+    "sodium": "mc26.3-0.9.2-fabric"
   },
-  "ci": {
-    "run_id": 38753979981,
-    "url": "https://github.com/Nodelll/display-model-optimizer/actions/runs/38753979981",
-    "source_commit": "89af96b41273e5d838638d2c8494391a1acb21b2",
-    "conclusion": "success",
-    "build_command": "python3 build.py",
-    "automated_suite_count": 7,
-    "total_assertions": 190460,
-    "scope": "These checks ran against the source commit used to build the published 0.7.1 JAR. The SHA-256 matches the digest reported by the GitHub release asset."
-  },
-  "checks": {
-    "lookup_assertions": 180346,
-    "model_cache_and_distance_assertions": 28,
-    "settings_assertions": 68,
-    "bounds_and_entityculling_scene_assertions": 9614,
-    "github_release_feed_assertions": 33,
-    "actual_minecraft_frustum_assertions": 236,
-    "gui_background_assertions": 135,
-    "gui_background_frame_resets": 128,
-    "gui_background_lifecycle": "passed: official Minecraft screen wrapper extracts the background before DMO content; normal widget extraction remains intact",
-    "gui_background_double_blur_guard": "passed: reproduced IllegalStateException: Can only blur once per frame using the actual Minecraft GuiRenderState",
-    "dependency_checksums": "passed",
-    "jar_metadata": "passed: version, Nodelll author, client environment and Minecraft 26.3 dependency",
-    "jar_contents": "passed: test classes and Minecraft/third-party compile dependencies are not bundled",
-    "jar_crc": "passed in release publishing job",
-    "published_jar_sha256": "matches CI build output"
-  },
-  "validation_scope": {
-    "rerun_for_0.5.1": [
-      "DrawLookupIndexTest",
-      "ModelCacheTest",
-      "SettingsTest including 10 configuration-transfer checks",
-      "BoundsTest",
-      "ModMenuSmokeTest against official API 21.0.0",
-      "MixinSmokeTest applying 9 own mixins to 8 official Minecraft classes alongside 2 original Entity Culling mixins",
-      "Transformed Minecraft model-state instantiation and accessor copy",
-      "Source and JAR identifier audit",
-      "Mod metadata, entrypoints, language keys and icon validation"
-    ],
-    "mod_id": "display_model_optimizer",
-    "java_package": "dev.nodelll.displaymodeloptimizer",
-    "config_path": "config/display-model-optimizer.properties",
-    "default_display_render_distance_blocks": 18,
-    "rerun_for_0.6.0": [
-      "DrawLookupIndexTest",
-      "ModelCacheTest",
-      "SettingsTest",
-      "BoundsTest",
-      "GitHubReleaseFeedTest",
-      "ModMenuSmokeTest against official API 21.0.0",
-      "Packaged metadata, translations, links, optional dependencies, version and identifier audit"
-    ],
-    "rerun_for_0.7.0": [
-      "DrawLookupIndexTest",
-      "ModelCacheTest",
-      "SettingsTest including seven-to-eight-option upgrades",
-      "BoundsTest",
-      "GitHubReleaseFeedTest",
-      "DisplayFrustumTest with actual Minecraft Frustum and production cached AABB",
-      "DisplayFrustumTest without optional mod jars",
-      "MixinSmokeTest without Entity Culling",
-      "MixinSmokeTest together with original Entity Culling 1.11.3 mixins",
-      "ModMenuSmokeTest against API 21.0.0",
-      "Packaged metadata, translation, version, contents and identifier audit"
-    ],
-    "settings_count": 8,
-    "rerun_for_0.7.1": [
-      "DrawLookupIndexTest",
-      "ModelCacheTest",
-      "SettingsTest",
-      "BoundsTest",
-      "GitHubReleaseFeedTest",
-      "DisplayFrustumTest",
-      "GuiBackgroundTest"
-    ],
-    "not_run_by_release_ci": [
-      "The standalone validation/MixinSmokeTest.java harness, with or without Entity Culling",
-      "The standalone validation/ModMenuSmokeTest.java harness",
-      "DisplayFrustumTest with optional mod JARs removed from its runtime classpath"
+  "cpu_microbenchmark": {
+    "cpu": "AMD EPYC 9V74 (container host; different from the user FPS-test PC)",
+    "scope": "Fabric VanillaBlockModelPartEncoder with Minecraft BakedQuad fixtures and actual Sodium meshes. Warm-cache CPU geometry conversion/replay only; excludes full extraction, tint/light calculations and GPU rendering. Not FPS.",
+    "method": "Four warm-up pairs, nine measured pairs, 12000 calls per mode and size; alternating order; median of measured rounds.",
+    "measurements": [
+      {
+        "quads": 6,
+        "direct_ns_per_call": 332.1,
+        "cached_ns_per_call": 105.0,
+        "preparation_throughput_ratio": 3.16
+      },
+      {
+        "quads": 24,
+        "direct_ns_per_call": 1266.8,
+        "cached_ns_per_call": 290.3,
+        "preparation_throughput_ratio": 4.36
+      },
+      {
+        "quads": 96,
+        "direct_ns_per_call": 5722.8,
+        "cached_ns_per_call": 1211.4,
+        "preparation_throughput_ratio": 4.72
+      },
+      {
+        "quads": 384,
+        "direct_ns_per_call": 22552.7,
+        "cached_ns_per_call": 4309.5,
+        "preparation_throughput_ratio": 5.23
+      }
     ]
   },
+  "ci": {
+    "status": "not yet recorded for this experimental branch; CI runs the build and renderer checks on pull requests"
+  },
+  "limitations": [
+    "No graphical Minecraft client or in-game FPS benchmark was run for this alpha. Visual behavior with the intended resource pack and shaders still needs in-game validation.",
+    "Persistent geometry caching requires the optional supported Fabric Renderer API. Its offline renderer-mesh checks use Sodium 0.9.2; other renderers have not been launched.",
+    "The cache replays each display separately and does not reduce GPU draw calls or replace full rendering with instancing.",
+    "Generation invalidation clears retained mesh entries on the next geometry-cache use. Storage is bounded by entry count and 65536 quads; meshes over 4096 quads are bypassed after a bounded marker is recorded.",
+    "The existing DMO Benchmark quick OFF/FULL plan measures all enabled DMO optimizations together. Its legacy settings constructor does not isolate the new flag.",
+    "Published 0.7.1 FPS results remain historical and do not measure this new optimization."
+  ],
   "historical_verification": {
     "0.7.0+mc26.3": {
       "jar_sha256": "056965dae3411fcf578c3423779810b11fb4417149b3392f01c61655bc7efd3b",
@@ -153,17 +142,121 @@
         "eight_setting_upgrade": "passed: existing and renamed seven-option configurations upgrade while retaining preferences and unknown UTF-8 properties",
         "immutable_world_aabb_reuse": "production cached AABB conversion exercised by actual Minecraft frustum scenes"
       }
+    },
+    "0.7.1+mc26.3": {
+      "mod": "Display Model Optimizer",
+      "version": "0.7.1+mc26.3",
+      "author": "Nodelll",
+      "target": {
+        "minecraft": "26.3",
+        "loader_minimum": "0.19.5",
+        "runtime_java_minimum": 25,
+        "compiled_release": 25
+      },
+      "jar_sha256": "48851ab3dab7ced179c3b9a735d3bbd64cbc41ed6a18bcd5461a1c0371a3be9c",
+      "official_client_sha1": "e877b6a07acd633fb3bb475002175cec036e7b87",
+      "release": {
+        "tag": "v0.7.1",
+        "url": "https://github.com/Nodelll/display-model-optimizer/releases/tag/v0.7.1",
+        "source_commit": "89af96b41273e5d838638d2c8494391a1acb21b2",
+        "published_at": "2026-10-15T14:44:15Z",
+        "asset_name": "display-model-optimizer-0.7.1+mc26.3.jar",
+        "asset_size_bytes": 127284,
+        "asset_url": "https://github.com/Nodelll/display-model-optimizer/releases/download/v0.7.1/display-model-optimizer-0.7.1%2Bmc26.3.jar",
+        "checksum_url": "https://github.com/Nodelll/display-model-optimizer/releases/download/v0.7.1/display-model-optimizer-0.7.1%2Bmc26.3.jar.sha256"
+      },
+      "ci": {
+        "run_id": 38753979981,
+        "url": "https://github.com/Nodelll/display-model-optimizer/actions/runs/38753979981",
+        "source_commit": "89af96b41273e5d838638d2c8494391a1acb21b2",
+        "conclusion": "success",
+        "build_command": "python3 build.py",
+        "automated_suite_count": 7,
+        "total_assertions": 190460,
+        "scope": "These checks ran against the source commit used to build the published 0.7.1 JAR. The SHA-256 matches the digest reported by the GitHub release asset."
+      },
+      "checks": {
+        "lookup_assertions": 180346,
+        "model_cache_and_distance_assertions": 28,
+        "settings_assertions": 68,
+        "bounds_and_entityculling_scene_assertions": 9614,
+        "github_release_feed_assertions": 33,
+        "actual_minecraft_frustum_assertions": 236,
+        "gui_background_assertions": 135,
+        "gui_background_frame_resets": 128,
+        "gui_background_lifecycle": "passed: official Minecraft screen wrapper extracts the background before DMO content; normal widget extraction remains intact",
+        "gui_background_double_blur_guard": "passed: reproduced IllegalStateException: Can only blur once per frame using the actual Minecraft GuiRenderState",
+        "dependency_checksums": "passed",
+        "jar_metadata": "passed: version, Nodelll author, client environment and Minecraft 26.3 dependency",
+        "jar_contents": "passed: test classes and Minecraft/third-party compile dependencies are not bundled",
+        "jar_crc": "passed in release publishing job",
+        "published_jar_sha256": "matches CI build output"
+      },
+      "validation_scope": {
+        "rerun_for_0.5.1": [
+          "DrawLookupIndexTest",
+          "ModelCacheTest",
+          "SettingsTest including 10 configuration-transfer checks",
+          "BoundsTest",
+          "ModMenuSmokeTest against official API 21.0.0",
+          "MixinSmokeTest applying 9 own mixins to 8 official Minecraft classes alongside 2 original Entity Culling mixins",
+          "Transformed Minecraft model-state instantiation and accessor copy",
+          "Source and JAR identifier audit",
+          "Mod metadata, entrypoints, language keys and icon validation"
+        ],
+        "mod_id": "display_model_optimizer",
+        "java_package": "dev.nodelll.displaymodeloptimizer",
+        "config_path": "config/display-model-optimizer.properties",
+        "default_display_render_distance_blocks": 18,
+        "rerun_for_0.6.0": [
+          "DrawLookupIndexTest",
+          "ModelCacheTest",
+          "SettingsTest",
+          "BoundsTest",
+          "GitHubReleaseFeedTest",
+          "ModMenuSmokeTest against official API 21.0.0",
+          "Packaged metadata, translations, links, optional dependencies, version and identifier audit"
+        ],
+        "rerun_for_0.7.0": [
+          "DrawLookupIndexTest",
+          "ModelCacheTest",
+          "SettingsTest including seven-to-eight-option upgrades",
+          "BoundsTest",
+          "GitHubReleaseFeedTest",
+          "DisplayFrustumTest with actual Minecraft Frustum and production cached AABB",
+          "DisplayFrustumTest without optional mod jars",
+          "MixinSmokeTest without Entity Culling",
+          "MixinSmokeTest together with original Entity Culling 1.11.3 mixins",
+          "ModMenuSmokeTest against API 21.0.0",
+          "Packaged metadata, translation, version, contents and identifier audit"
+        ],
+        "settings_count": 8,
+        "rerun_for_0.7.1": [
+          "DrawLookupIndexTest",
+          "ModelCacheTest",
+          "SettingsTest",
+          "BoundsTest",
+          "GitHubReleaseFeedTest",
+          "DisplayFrustumTest",
+          "GuiBackgroundTest"
+        ],
+        "not_run_by_release_ci": [
+          "The standalone validation/MixinSmokeTest.java harness, with or without Entity Culling",
+          "The standalone validation/ModMenuSmokeTest.java harness",
+          "DisplayFrustumTest with optional mod JARs removed from its runtime classpath"
+        ]
+      },
+      "limitations": [
+        "The release CI runs automated checks without launching a complete graphical Minecraft client; it does not measure in-game FPS or establish compatibility with every modpack or shader pack.",
+        "Standalone Mixin application and Mod Menu API smoke checks are recorded under historical_verification for 0.7.0; they were not rerun by the 0.7.1 release workflow.",
+        "The block-model cache covers normal block_display model preparation, not all item models or GPU rendering costs.",
+        "displayRenderDistance defaults to 18 blocks. Zero preserves the original render distance, and existing explicit configuration values are retained.",
+        "Occlusion depends on the optional Entity Culling mod, including its asynchronous updates and transparency rules.",
+        "Unknown or animated item-model bounds and moving entity anchors retain visibility conservatively.",
+        "Correct visual output with the intended server resource pack and shader pack still requires in-game checks; synthetic and standalone checks are not exhaustive.",
+        "Automatic settings transfer requires a unique sibling .properties file with the historical seven-key core; ambiguous or incomplete configurations require manual selection.",
+        "GitHub update selection is covered by offline fixtures; the complete Mod Menu notification flow and settings screens require graphical client checks."
+      ]
     }
-  },
-  "limitations": [
-    "The release CI runs automated checks without launching a complete graphical Minecraft client; it does not measure in-game FPS or establish compatibility with every modpack or shader pack.",
-    "Standalone Mixin application and Mod Menu API smoke checks are recorded under historical_verification for 0.7.0; they were not rerun by the 0.7.1 release workflow.",
-    "The block-model cache covers normal block_display model preparation, not all item models or GPU rendering costs.",
-    "displayRenderDistance defaults to 18 blocks. Zero preserves the original render distance, and existing explicit configuration values are retained.",
-    "Occlusion depends on the optional Entity Culling mod, including its asynchronous updates and transparency rules.",
-    "Unknown or animated item-model bounds and moving entity anchors retain visibility conservatively.",
-    "Correct visual output with the intended server resource pack and shader pack still requires in-game checks; synthetic and standalone checks are not exhaustive.",
-    "Automatic settings transfer requires a unique sibling .properties file with the historical seven-key core; ambiguous or incomplete configurations require manual selection.",
-    "GitHub update selection is covered by offline fixtures; the complete Mod Menu notification flow and settings screens require graphical client checks."
-  ]
+  }
 }

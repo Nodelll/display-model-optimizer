@@ -6,17 +6,22 @@ The current implementation targets Minecraft 26.3, Fabric Loader 0.19.5 or later
 
 Run `python3 build.py` with JDK 25. The build executes:
 
-| Check | Assertions in 0.7.1 |
+| Check | Assertions in 0.8.0-alpha.1 |
 | --- | ---: |
 | Draw lookup equivalence and fallback | 180346 |
 | Model cache ownership, lifetime and distance | 28 |
-| Settings, validation and configuration transfer | 68 |
+| Settings, validation and configuration transfer | 76 |
 | Model bounds and actual Entity Culling scene checks | 9614 |
 | GitHub updates: version order, Minecraft compatibility, channels and malformed feeds | 33 |
 | Actual Minecraft frustum with cached model boxes, camera turns and custom-model extents | 236 |
 | Actual Minecraft screen background order, double-blur guard and 128 frame resets | 135 |
+| Persistent geometry cache: weighted LRU, capacity, randomized parity and lifecycle | 7365 |
 
-GitHub Actions runs this build and publishes the resulting JAR as a workflow artifact. The 0.7.1 release is published only after this build succeeds.
+GitHub Actions runs this build and publishes the resulting JAR as a workflow artifact. This alpha branch does not publish a release automatically.
+
+CI also runs `python3 validation/run_geometry_checks.py`. It downloads checksum-pinned validation dependencies, verifies existing transformations without Fabric Renderer API, repeats the checks alongside the real Entity Culling mixins, then applies the actual FRAPI wrapper overwrite and DMO geometry redirect together. Actual Sodium 0.9.2 meshes are used for 129 packed-output, metadata, caller-transform, random-seed, model-identity, invalidation and bypass assertions. No graphical client is started.
+
+Add `--benchmark` to that command to time ordinary Minecraft baked-quad conversion against warmed geometry replay. The timings cover only CPU geometry preparation; they do not measure FPS. See [the algorithm and in-game comparison](BLOCK_GEOMETRY_CACHE.md).
 
 `GuiBackgroundTest` reads the actual Minecraft 26.3 screen bytecode, checks that the vanilla wrapper extracts the background before the content, and exercises the real GUI render state's once-per-frame blur guard. Its optional first argument is a previous mod JAR; passing 0.7.0 reproduces the background-order regression.
 

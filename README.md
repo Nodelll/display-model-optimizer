@@ -13,6 +13,7 @@ Display Model Optimizer reduces repeated rendering work for `item_display` and `
 ## Features
 
 - **Block model caching:** prepares identical supported block models once per frame.
+- **Persistent block geometry cache (0.8.0 alpha):** reuses converted geometry across frames for visible block displays through optional Fabric Renderer API.
 - **Faster draw-group lookups:** reduces the cost of grouping models for rendering.
 - **Configurable display distance:** an additional render-distance limit of **18 blocks by default**.
 - **Off-screen culling:** actual model bounds let Minecraft skip item and block displays outside the camera view, independently of Entity Culling.
@@ -28,7 +29,7 @@ Display Model Optimizer reduces repeated rendering work for `item_display` and `
 | Entity Culling | Optional; required for occlusion. Tested with **1.11.3** for Minecraft 26.3. |
 | Mod Menu | Optional; required for the settings screen. Tested with **21.0.0**. |
 
-Install the mod on the **client**. Model caching, draw lookups and the distance limit work without Entity Culling. Fabric API is not a dependency of this mod.
+Install the mod on the **client**. Model caching, draw lookups and the distance limit work without Entity Culling. Fabric API is optional; the new persistent geometry cache needs **Fabric Renderer API 17.0.16+**. Other features work without it.
 
 ## Installation and settings
 
@@ -43,6 +44,8 @@ Off-screen culling uses Minecraft's normal camera frustum and works independentl
 The occlusion option uses the installed Entity Culling mod. Visibility follows its transparency rules; full opaque blocks can hide models, while glass and invisible barriers do not count as opaque walls. Animated item models, moving display entities and models with unknown bounds may remain visible.
 
 ## Performance tests
+
+The **0.8.0 alpha** branch adds an independent `cacheBlockDisplayGeometry` switch under **Advanced**. It stores converted block-display geometry across frames, with capacity and quad budgets and automatic invalidation. See [algorithm, CPU checks and in-game comparison](docs/BLOCK_GEOMETRY_CACHE.md). The in-game FPS measurements below are for **0.7.1**, before this feature.
 
 User-submitted measurements from **15 October 2026**, using **DMO 0.7.1** and the separate DMO Benchmark companion's `quick` plan in a singleplayer arena with **600 item/block display entities**.
 

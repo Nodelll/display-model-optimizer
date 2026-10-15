@@ -1,7 +1,9 @@
 package dev.nodelll.displaymodeloptimizer.mixin;
 
 import dev.nodelll.displaymodeloptimizer.BlockDisplayModelCache;
+import dev.nodelll.displaymodeloptimizer.GeometryCacheLifecycle;
 import dev.nodelll.displaymodeloptimizer.culling.DisplayOcclusion;
+import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,6 +14,7 @@ public abstract class FrameExtractionMixin {
     @Inject(method = "extract(Lnet/minecraft/client/DeltaTracker;Z)V", at = @At("HEAD"))
     private void displayModelOptimizer$beginModelCache(CallbackInfo ci) {
         BlockDisplayModelCache.beginFrame();
+        GeometryCacheLifecycle.beginFrame(Minecraft.getInstance().level);
     }
 
     @Inject(method = "extract(Lnet/minecraft/client/DeltaTracker;Z)V", at = @At("RETURN"))
@@ -20,5 +23,8 @@ public abstract class FrameExtractionMixin {
     }
 
     @Inject(method = "onResourceManagerReload(Lnet/minecraft/server/packs/resources/ResourceManager;)V", at = @At("HEAD"))
-    private void displayModelOptimizer$refreshDisplayBounds(CallbackInfo ci) { DisplayOcclusion.invalidateAll(); }
+    private void displayModelOptimizer$refreshDisplayBounds(CallbackInfo ci) {
+        DisplayOcclusion.invalidateAll();
+        GeometryCacheLifecycle.invalidate();
+    }
 }

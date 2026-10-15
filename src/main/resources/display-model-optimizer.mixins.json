@@ -2,7 +2,8 @@
   "required": true,
   "minVersion": "0.8.7",
   "package": "dev.nodelll.displaymodeloptimizer.mixin",
+  "plugin": "dev.nodelll.displaymodeloptimizer.compat.OptimizerMixinPlugin",
   "compatibilityLevel": "JAVA_25",
-  "client": ["RenderTypeGroupMixin", "BlockModelStateAccessor", "BlockModelResolverMixin", "FrameExtractionMixin", "DisplayDistanceMixin", "DisplayBoundsMixin", "DisplayRendererBoundsMixin", "ItemDisplayBoundsMixin", "BlockDisplayBoundsMixin", "EntityCullingBoundsMixin"],
+  "client": ["RenderTypeGroupMixin", "BlockModelStateAccessor", "BlockModelResolverMixin", "FrameExtractionMixin", "DisplayDistanceMixin", "DisplayBoundsMixin", "DisplayRendererBoundsMixin", "ItemDisplayBoundsMixin", "BlockDisplayBoundsMixin", "EntityCullingBoundsMixin", "FabricBlockGeometryMixin"],
   "injectors": {"defaultRequire": 1}
 }
