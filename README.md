@@ -60,6 +60,13 @@ This is an **experimental beta**. Automated checks cover draw lookup equivalence
 
 These checks do not replace an actual Minecraft client launch or a controlled FPS benchmark. Full modpack and shader-pack behavior still needs testing in game. See [testing notes](docs/TESTING.md) and [validation details](VALIDATION.json).
 
+## Special thanks
+
+Thanks to the authors and contributors of these projects:
+
+- [CullDisplayEntities](https://github.com/JustAlittleWolf/CullDisplayEntities) — for the model-based bounding-box approach to display-entity culling that inspired DMO's off-screen culling.
+- [EntityCulling](https://github.com/tr7zw/EntityCulling) — for the occlusion-culling implementation that DMO integrates with to hide display models behind opaque blocks.
+
 ## Development transparency
 
 Generative AI was used to produce the implementation, documentation, translations and icon. The mod does not use AI at runtime. Its source is available for review and contributions.
