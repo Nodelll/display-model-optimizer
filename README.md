@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="src/main/resources/assets/display_model_optimizer/icon.png" width="112" height="112" alt="Display Model Optimizer icon">
-</p>
+<!-- <p align="center"> -->
+<!--  <img src="src/main/resources/assets/display_model_optimizer/icon.png" width="112" height="112" alt="Display Model Optimizer icon"> -->
+<!-- </p> -->
 
 # Display Model Optimizer
 
