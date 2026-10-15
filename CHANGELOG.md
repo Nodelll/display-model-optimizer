@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.0-beta.1 — Minecraft 26.2 / 1.21.11 prerelease ports — 2026-10-15
+
+- Add independently built Fabric client ports for Minecraft 26.2 (Java 25) and 1.21.11 (Java 21), keeping 26.3 stable at 0.8.0.
+- Adapt 26.2 display culling, resource reload invalidation and optional FRAPI 14 geometry caching.
+- Port 1.21.11 preparation caching to vanilla model-part collection and FRAPI 8 geometry emission, preserving queued display scope and original lighting/tint/outline passes. Remap production classes and mixin selectors to intermediary.
+- Omit the unavailable 26.x draw-group hook on 1.21.11 and hide its advanced settings; adapt the settings screen to its GuiGraphics API with one background pass.
+- Validate each target with its own Minecraft/renderer binaries, production-JAR mixins and optional-dependency combinations. Add a CI gate for prerelease JARs and checksums.
+- Document dependency versions and conservative culling behavior. Existing 26.3 FPS results are not reused as measurements of these ports.
+
 ## 0.8.0 — 2026-10-15
 
 - Add an optional, bounded cache of converted `block_display` geometry across frames using Fabric Renderer API geometry keys and renderer-owned immutable meshes.

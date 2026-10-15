@@ -4,6 +4,10 @@
 /logs/
 /run/
 /out/
+/ports/.gradle/
+/ports/build/
+/ports/*/build/
+/ports/*/run/
 __pycache__/
 *.pyc
 

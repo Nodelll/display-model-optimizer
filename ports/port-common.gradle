@@ -1,0 +1,62 @@
+def sourceRoot = rootProject.projectDir.parentFile
+def targetMinecraft = project.name == 'mc26_2' ? '26.2' : '1.21.11'
+def targetJava = targetMinecraft == '26.2' ? 25 : 21
+def generated = layout.buildDirectory.dir('generated/dmo-java')
+base { archivesName = 'display-model-optimizer' }
+tasks.register('preparePortSources', Sync) {
+    from(new File(sourceRoot, 'src/main/java')) {
+        if (targetMinecraft == '1.21.11') {
+            exclude '**/BlockModelSnapshot.java', '**/BlockModelStateAccessor.java', '**/BlockModelResolverMixin.java', '**/RenderTypeGroupMixin.java'
+        }
+        exclude { d -> new File(project.projectDir, 'src/main/java/' + d.path).isFile() }
+    }
+    from('src/main/java')
+    into generated
+}
+sourceSets.main.java.setSrcDirs([generated])
+sourceSets.main.resources.setSrcDirs([new File(sourceRoot, 'src/main/resources')])
+java { sourceCompatibility = JavaVersion.toVersion(targetJava); targetCompatibility = JavaVersion.toVersion(targetJava) }
+tasks.withType(JavaCompile).configureEach {
+    dependsOn 'preparePortSources'
+    options.encoding = 'UTF-8'
+    options.release = targetJava
+}
+processResources {
+    inputs.file(rootProject.file('port-common.gradle'))
+    inputs.property('targetMinecraft', targetMinecraft)
+    inputs.property('version', version)
+    filesMatching('fabric.mod.json') {
+        filter { line -> line.replace('0.8.0+mc26.3', project.version.toString()).replace('"26.3"', '"' + targetMinecraft + '"')
+            .replace('>=25', '>=' + targetJava).replace('>=21.0.0', targetMinecraft == '26.2' ? '>=20.0.0' : '>=17.0.0') }
+    }
+    filesMatching('display-model-optimizer.mixins.json') {
+        filter { line ->
+            line = line.replace('JAVA_25', 'JAVA_' + targetJava)
+            if (targetMinecraft == '1.21.11') {
+                line = line.replace('"RenderTypeGroupMixin", "BlockModelStateAccessor", "BlockModelResolverMixin", ', '')
+                line = line.replace('"FabricBlockGeometryMixin"', '"FabricBlockGeometryMixin", "LegacyModelPartsMixin", "DisplaySubmitMixin", "BlockSubmitMixin", "BlockFeatureScopeMixin", "ResourceReloadMixin"')
+            } else {
+                line = line.replace('"FrameExtractionMixin"', '"FrameExtractionMixin", "ResourceReloadMixin"')
+            }
+            line
+        }
+    }
+}
+tasks.withType(Jar).configureEach {
+    archiveBaseName = 'display-model-optimizer'
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+    from(new File(sourceRoot, 'LICENSE'))
+}
+
+tasks.register('writeValidationEnvironment') {
+    dependsOn 'classes'
+    doLast {
+        def result = [minecraft: targetMinecraft, java: targetJava, version: project.version.toString(),
+                      classes: sourceSets.main.output.classesDirs.files.collect { it.absolutePath },
+                      resources: sourceSets.main.output.resourcesDir.absolutePath,
+                      compileClasspath: sourceSets.main.compileClasspath.files.collect { it.absolutePath },
+                      runtimeClasspath: sourceSets.main.runtimeClasspath.files.collect { it.absolutePath }]
+        new File(layout.buildDirectory.get().asFile, 'validation-environment.json').text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(result))
+    }
+}
