@@ -80,7 +80,15 @@
     ]
   },
   "ci": {
-    "status": "not yet recorded for this experimental branch; CI runs the build and renderer checks on pull requests"
+    "run_id": 38768216579,
+    "url": "https://github.com/Nodelll/display-model-optimizer/actions/runs/38768216579",
+    "source_commit": "de5220178115d788856d0e11b91a6aba0c83ac65",
+    "conclusion": "success",
+    "commands": ["python3 build.py", "python3 validation/run_geometry_checks.py"],
+    "automated_assertions": 197833,
+    "actual_sodium_mesh_parity_assertions": 129,
+    "jar_sha256": "36da6b798c134a71f64cb06f8a0bc877023d4233932596a792201f6ddfd29a62",
+    "scope": "GitHub Actions built the implementation commit, passed both validation commands and produced the same JAR SHA-256 as the local test build. The following documentation commit records this result; it does not alter packaged code or resources. CPU timings were measured locally, outside CI."
   },
   "limitations": [
     "No graphical Minecraft client or in-game FPS benchmark was run for this alpha. Visual behavior with the intended resource pack and shaders still needs in-game validation.",
