@@ -1,5 +1,6 @@
 package dev.nodelll.displaymodeloptimizer;
 
+import java.io.File;
 import java.io.InputStream;
 import java.lang.classfile.ClassFile;
 import java.lang.classfile.ClassModel;
@@ -17,7 +18,6 @@ import java.util.zip.ZipFile;
 public final class GuiBackgroundTest {
     private static final String SCREEN = "net/minecraft/client/gui/screens/Screen";
     private static final String CONFIG = "dev/nodelll/displaymodeloptimizer/gui/DisplayModelOptimizerConfigScreen";
-    private static final String GUI_STATE = "net/minecraft/client/gui/render/state/GuiRenderState";
     private static final String BLUR_ERROR = "Can only blur once per frame";
     private static int assertions;
 
@@ -46,7 +46,8 @@ public final class GuiBackgroundTest {
         check(count(calls(method(screen, "extractRenderState")), "extractBackground") == 0,
                 "Base widget extraction must not add another background");
 
-        ClassModel stateModel = read(GUI_STATE);
+        String guiState = findGuiStateClass();
+        ClassModel stateModel = read(guiState);
         MethodModel guardModel = stateModel.methods().stream()
                 .filter(candidate -> candidate.code().isPresent())
                 .filter(candidate -> candidate.code().orElseThrow().elementList().stream()
@@ -55,7 +56,7 @@ public final class GuiBackgroundTest {
                 .findFirst().orElseThrow(() -> new AssertionError("Official Minecraft double-blur guard missing"));
         check(guardModel.methodType().equalsString("()V"), "The official blur guard is a no-argument frame operation");
 
-        Class<?> stateClass = Class.forName(GUI_STATE.replace('/', '.'));
+        Class<?> stateClass = Class.forName(guiState.replace('/', '.'));
         Object state = stateClass.getConstructor().newInstance();
         Method blur = stateClass.getMethod(guardModel.methodName().stringValue());
         Method reset = stateClass.getMethod("reset");
@@ -76,6 +77,20 @@ public final class GuiBackgroundTest {
         }
         System.out.println("PASS: " + assertions
                 + " actual Minecraft background-order, double-blur guard and frame-reset assertions.");
+    }
+
+    private static String findGuiStateClass() throws Exception {
+        List<String> matches = new ArrayList<>();
+        for (String entry : System.getProperty("java.class.path").split(File.pathSeparator)) {
+            if (!entry.endsWith(".jar")) continue;
+            try (ZipFile jar = new ZipFile(entry)) {
+                jar.stream().filter(file -> file.getName().endsWith("/GuiRenderState.class"))
+                        .forEach(file -> matches.add(file.getName().replace(".class", "")));
+            }
+        }
+        if (matches.size() != 1) throw new AssertionError("Expected one official GUI render state: " + matches);
+        System.out.println("Checking official GUI render state: " + matches.getFirst());
+        return matches.getFirst();
     }
 
     private static ClassModel read(String internalName) throws Exception {
