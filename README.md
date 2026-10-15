@@ -10,6 +10,8 @@
 
 Display Model Optimizer reduces repeated rendering work for `item_display` and `block_display` entities. It is designed for decorative builds, custom furniture, showcases and other areas containing many display models, in singleplayer or on servers.
 
+**Prerelease ports:** Minecraft **26.2** and **1.21.11** builds are available separately as **0.8.0-beta.1**. See [dependencies, version-specific behavior and build instructions](ports/README.md). The stable build and FPS results below target **26.3**.
+
 ## Features
 
 - **Block model caching:** prepares identical supported block models once per frame.

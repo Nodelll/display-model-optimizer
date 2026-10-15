@@ -1,0 +1,124 @@
+name: Fabric ports
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fabric-ports-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  port:
+    name: Minecraft ${{ matrix.minecraft }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - minecraft: '26.2'
+            project: mc26_2
+          - minecraft: '1.21.11'
+            project: mc1_21_11
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install Java 21 runtime for legacy verification
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Remember Java 21 runtime
+        run: echo "DISPLAY_MODEL_OPTIMIZER_JAVA21=$JAVA_HOME/bin/java" >> "$GITHUB_ENV"
+      - name: Install JDK 25 for Loom and both compilers
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Build the version-specific production JAR
+        working-directory: ports
+        run: ./gradlew ":${{ matrix.project }}:build" ":${{ matrix.project }}:writeValidationEnvironment"
+      - name: Verify target APIs, production mixins and renderer mesh parity
+        run: python3 ports/validate.py "${{ matrix.minecraft }}"
+      - name: Upload verified JAR and checksum
+        uses: actions/upload-artifact@v7
+        with:
+          name: dmo-prerelease-mc${{ matrix.minecraft }}
+          path: |
+            ports/${{ matrix.minecraft }}/build/libs/display-model-optimizer-*.jar
+            ports/${{ matrix.minecraft }}/build/libs/display-model-optimizer-*.jar.sha256
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload verification logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dmo-port-checks-mc${{ matrix.minecraft }}
+          path: ports/${{ matrix.minecraft }}/build/validation/*.log
+          if-no-files-found: ignore
+          retention-days: 14
+
+  publish:
+    name: Publish 0.8.0-beta.1 prerelease
+    needs: port
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(github.event.head_commit.message, 'Prerelease 0.8.0-beta.1:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RUN_ID: ${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Download both tested artifacts
+        run: |
+          gh run download "$RUN_ID" --repo "$GH_REPO" --name dmo-prerelease-mc26.2 --dir dist
+          gh run download "$RUN_ID" --repo "$GH_REPO" --name dmo-prerelease-mc1.21.11 --dir dist
+      - name: Recheck metadata and checksums
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          import zipfile
+          for minecraft in ('26.2', '1.21.11'):
+              version = '0.8.0-beta.1+mc' + minecraft
+              jar = Path('dist/display-model-optimizer-' + version + '.jar')
+              expected = jar.with_suffix('.jar.sha256').read_text().split()[0]
+              assert hashlib.sha256(jar.read_bytes()).hexdigest() == expected
+              with zipfile.ZipFile(jar) as archive:
+                  assert archive.testzip() is None
+                  metadata = json.loads(archive.read('fabric.mod.json'))
+                  assert metadata['version'] == version
+                  assert metadata['depends']['minecraft'] == minecraft
+                  assert metadata['authors'] == ['Nodelll']
+                  assert metadata['environment'] == 'client'
+          PY
+      - name: Publish both builds as a prerelease
+        run: |
+          gh release create v0.8.0-beta.1 \
+            "dist/display-model-optimizer-0.8.0-beta.1+mc26.2.jar" \
+            "dist/display-model-optimizer-0.8.0-beta.1+mc26.2.jar.sha256" \
+            "dist/display-model-optimizer-0.8.0-beta.1+mc1.21.11.jar" \
+            "dist/display-model-optimizer-0.8.0-beta.1+mc1.21.11.jar.sha256" \
+            --repo "$GH_REPO" \
+            --target "$GITHUB_SHA" \
+            --title "Display Model Optimizer 0.8.0-beta.1 — Fabric 26.2 / 1.21.11" \
+            --notes-file docs/releases/0.8.0-beta.1.md \
+            --prerelease \
+            --latest=false

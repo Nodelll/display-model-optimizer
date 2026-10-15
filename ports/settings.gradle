@@ -1,0 +1,11 @@
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.fabricmc.net/' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+rootProject.name = 'display-model-optimizer-ports'
+include 'mc26_2', 'mc1_21_11'
+project(':mc26_2').projectDir = file('26.2')
+project(':mc1_21_11').projectDir = file('1.21.11')

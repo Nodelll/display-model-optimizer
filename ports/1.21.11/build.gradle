@@ -1,0 +1,13 @@
+plugins { id 'net.fabricmc.fabric-loom-remap' }
+version = '0.8.0-beta.1+mc1.21.11'
+dependencies {
+    minecraft 'com.mojang:minecraft:1.21.11'
+    mappings loom.officialMojangMappings()
+    modImplementation 'net.fabricmc:fabric-loader:0.19.5'
+    modCompileOnly 'net.fabricmc.fabric-api:fabric-api:0.141.6+1.21.11'
+    modCompileOnly 'com.terraformersmc:modmenu:17.0.1'
+    modCompileOnly 'maven.modrinth:entityculling:CTabrwB1'
+    // Used only by the mesh parity validator; never bundled or required by the mod.
+    modCompileOnly 'maven.modrinth:sodium:rkdTcxoT'
+}
+apply from: '../port-common.gradle'

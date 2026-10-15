@@ -1,0 +1,104 @@
+package dev.nodelll.displaymodeloptimizer.validation;
+
+import dev.nodelll.displaymodeloptimizer.compat.GeometryReplayCache;
+import java.lang.reflect.Proxy;
+import java.util.Arrays;
+import java.util.function.Predicate;
+import net.caffeinemc.mods.sodium.client.render.frapi.mesh.MutableMeshImpl;
+import FRAPI_PACKAGE.Renderer;
+import FRAPI_PACKAGE.mesh.MutableMesh;
+import FRAPI_PACKAGE.mesh.QuadEmitter;
+import FRAPI_PACKAGE.model.FabricBlockStateModel;
+import net.fabricmc.fabric.api.util.TriState;
+import BLOCK_VIEW_PACKAGE.BlockAndTintGetter;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
+
+/** Uses each target version's real Sodium mesh implementation, not a mock mesh. */
+public final class PortMeshCases {
+    private static final Predicate<Direction> NEVER_CULL = d -> false;
+    private static int assertions;
+    private static final class Model implements FabricBlockStateModel {
+        int calls, variant, quads = 24;
+        boolean dynamic, seeded;
+        @Override public Object createGeometryKey(BlockAndTintGetter view, BlockPos pos, BlockState state, RandomSource random) {
+            return dynamic ? null : seeded ? Long.valueOf(random.nextLong()) : Integer.valueOf(variant);
+        }
+        @Override public void emitQuads(QuadEmitter out, BlockAndTintGetter view, BlockPos pos, BlockState state,
+                                        RandomSource random, Predicate<Direction> cull) {
+            calls++;
+            float offset = random.nextFloat() * .125f;
+            for (int i = 0; i < quads; i++) {
+                Direction face = i % 7 == 6 ? null : Direction.values()[i % 7];
+                if (cull.test(face)) continue;
+                out.cullFace(face).nominalFace(Direction.NORTH).LAYER_METHOD(i % 2 == 0 ? ChunkSectionLayer.SOLID : ChunkSectionLayer.TRANSLUCENT)
+                        .tintIndex(i % 3 - 1).tag(i + variant).emissive(i % 2 == 0).ambientOcclusion(TriState.values()[i % 3]);
+                for (int v = 0; v < 4; v++) out.pos(v,(v==1||v==2?1:0)+offset,v>1?1:0,i*.001f)
+                        .uv(v,v*.1f,i*.02f).color(v,0xffaabb00+i+v).normal(v,0,0,-1).lightmap(v,0x00100020+i);
+                out.emit();
+            }
+        }
+    }
+    public static void main(String[] args) throws Exception {
+        Renderer renderer = (Renderer) Proxy.newProxyInstance(PortMeshCases.class.getClassLoader(),new Class[]{Renderer.class},
+                (proxy,method,values) -> {
+                    if (method.getName().equals("mutableMesh")) return new MutableMeshImpl();
+                    throw new UnsupportedOperationException(method.getName());
+                });
+        var cache = new GeometryReplayCache(); var model = new Model();
+        var expected = renderer.mutableMesh(); var actual = renderer.mutableMesh();
+        for (int i=0;i<30;i++) {
+            expected.clear();actual.clear();
+            model.emitQuads(expected.emitter(),null,BlockPos.ZERO,null,RandomSource.create(42),NEVER_CULL);
+            int before=model.calls;
+            cache.emit(model,actual.emitter(),null,BlockPos.ZERO,null,RandomSource.create(42),NEVER_CULL,42,renderer,true,0,8);
+            check(Arrays.equals(raw(expected),raw(actual)),"all packed vertex/material metadata must match on miss and hit");
+            check(model.calls==before+(i==0?1:0),"one emission across repeated frames");
+        }
+        actual.clear();
+        actual.emitter().pushTransform(q -> {
+            q.tintIndex(12);
+            for (int v=0;v<4;v++) q.pos(v,q.x(v)+2,q.y(v)+3,q.z(v)+4);
+            return true;
+        });
+        cache.emit(model,actual.emitter(),null,BlockPos.ZERO,null,RandomSource.create(42),NEVER_CULL,42,renderer,true,0,8);
+        actual.emitter().popTransform();
+        actual.forEach(q -> check(q.tintIndex()==12 && q.x(0)>=2,"current caller transform applies on replay"));
+        actual.clear();
+        cache.emit(model,actual.emitter(),null,BlockPos.ZERO,null,RandomSource.create(42),NEVER_CULL,42,renderer,true,0,8);
+        actual.forEach(q -> check(q.tintIndex()!=12 && q.x(0)<1,"stored mesh stays immutable"));
+        int before=model.calls;model.variant++;
+        emit(cache,renderer,model,0,true,8,42); check(model.calls==before+1,"geometry key changed");
+        emit(cache,renderer,model,1,true,8,42); check(model.calls==before+2,"resource/world/config generation changed");
+        emit(cache,renderer,model,1,false,8,42); check(model.calls==before+3,"graphics setting changed");
+        model.dynamic=true;
+        emit(cache,renderer,model,1,false,8,42);emit(cache,renderer,model,1,false,8,42);
+        check(model.calls==before+5,"null key remains dynamic");
+        model.dynamic=false;model.seeded=true;
+        for (int seed:new int[]{3,6,3,6,17,17}) {
+            expected.clear();actual.clear();
+            model.emitQuads(expected.emitter(),null,BlockPos.ZERO,null,RandomSource.create(seed),NEVER_CULL);
+            cache.emit(model,actual.emitter(),null,BlockPos.ZERO,null,RandomSource.create(seed),NEVER_CULL,seed,renderer,false,1,8);
+            check(Arrays.equals(raw(expected),raw(actual)),"key RNG cannot advance emission RNG");
+        }
+        before=model.calls;emit(cache,renderer,model,1,false,0,3);emit(cache,renderer,model,1,false,0,3);
+        check(model.calls==before+2,"zero limit bypasses");
+        model.seeded=false;model.quads=GeometryReplayCache.MAXIMUM_ENTRY_QUADS+1;
+        actual.clear();cache.emit(model,actual.emitter(),null,BlockPos.ZERO,null,RandomSource.create(42),NEVER_CULL,42,renderer,false,2,8);
+        check(actual.size()==model.quads,"oversize miss is rendered completely");
+        actual.clear();cache.emit(model,actual.emitter(),null,BlockPos.ZERO,null,RandomSource.create(42),NEVER_CULL,42,renderer,false,2,8);
+        check(actual.size()==model.quads,"oversize marker falls back completely");
+        System.out.println("PASS: "+assertions+" actual target-version Sodium mesh parity, metadata, transforms, key RNG and bypass assertions.");
+    }
+    private static void emit(GeometryReplayCache c,Renderer r,Model m,long generation,boolean leaves,int limit,long seed) {
+        c.emit(m,r.mutableMesh().emitter(),null,BlockPos.ZERO,null,RandomSource.create(seed),NEVER_CULL,seed,r,leaves,generation,limit);
+    }
+    private static int[] raw(MutableMesh mesh) throws Exception {
+        var type=mesh.getClass().getSuperclass();var data=type.getDeclaredField("data");var limit=type.getDeclaredField("limit");
+        data.setAccessible(true);limit.setAccessible(true);return Arrays.copyOf((int[])data.get(mesh),limit.getInt(mesh));
+    }
+    private static void check(boolean condition,String message) { assertions++;if(!condition)throw new AssertionError(message); }
+}
