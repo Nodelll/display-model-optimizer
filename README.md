@@ -17,7 +17,6 @@ Display Model Optimizer reduces repeated rendering work for `item_display` and `
 - **Configurable display distance:** an additional render-distance limit of **18 blocks by default**.
 - **Off-screen culling:** actual model bounds let Minecraft skip item and block displays outside the camera view, independently of Entity Culling.
 - **Entity Culling integration:** supplies model bounds so fully occluded displays can be hidden behind opaque blocks.
-- **Mod Menu integration:** English/Russian settings tabs, project and download links, dependency status and compatible GitHub update notifications.
 
 ## Requirements
 
