@@ -60,7 +60,7 @@ This is an **experimental beta**. Automated checks cover draw lookup equivalence
 
 These checks do not replace an actual Minecraft client launch or a controlled FPS benchmark. Full modpack and shader-pack behavior still needs testing in game. See [testing notes](docs/TESTING.md) and [validation details](VALIDATION.json).
 
-## Special thanks
+## Credits
 
 Thanks to the authors and contributors of these projects:
 
