@@ -143,7 +143,8 @@ public final class DisplayModelOptimizerConfigScreen extends Screen {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        extractBackground(graphics, mouseX, mouseY, partialTick);
+        // Minecraft's screen wrapper extracts the background before this method.
+        // Extracting it again requests a second blur in the same frame.
         var text = graphics.textRenderer();
         text.accept(TextAlignment.CENTER, width / 2, 14, title);
         if (page == Page.GENERAL) {

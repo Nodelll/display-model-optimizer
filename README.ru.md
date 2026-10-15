@@ -33,6 +33,8 @@ Display Model Optimizer сокращает повторную работу пр�
 
 ## Установка и настройки
 
+[Версия 0.7.1](https://github.com/Nodelll/display-model-optimizer/releases/tag/v0.7.1) исправляет вылет при открытии настроек DMO через Mod Menu в Minecraft 26.3 (`Can only blur once per frame`).
+
 1. Скачать JAR из раздела [Releases](https://github.com/Nodelll/display-model-optimizer/releases).
 2. Удалить предыдущую версию из папки `mods`, поместить туда новый JAR и перезапустить Minecraft.
 3. Открыть **Mod Menu → Display Model Optimizer** либо вручную изменить `config/display-model-optimizer.properties` и перезапустить игру.

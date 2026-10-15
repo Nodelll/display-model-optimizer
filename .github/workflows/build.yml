@@ -37,3 +37,56 @@ jobs:
           path: build/libs/*.jar
           if-no-files-found: error
           retention-days: 14
+
+  publish-0-7-1:
+    name: Publish 0.7.1
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && startsWith(github.event.head_commit.message, 'Release 0.7.1:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RUN_ID: ${{ github.run_id }}
+    steps:
+      - name: Check out release notes
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Download the tested mod artifact
+        run: gh run download "$RUN_ID" --repo "$GH_REPO" --name display-model-optimizer-mc26.3 --dir build/libs
+      - name: Verify release binary and write checksum
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          import zipfile
+
+          jar = Path("build/libs/display-model-optimizer-0.7.1+mc26.3.jar")
+          with zipfile.ZipFile(jar) as archive:
+              assert archive.testzip() is None
+              metadata = json.loads(archive.read("fabric.mod.json"))
+              assert metadata["id"] == "display_model_optimizer"
+              assert metadata["version"] == "0.7.1+mc26.3"
+              assert metadata["authors"] == ["Nodelll"]
+              assert metadata["environment"] == "client"
+              assert metadata["depends"]["minecraft"] == "26.3"
+          digest = hashlib.sha256(jar.read_bytes()).hexdigest()
+          jar.with_suffix(".jar.sha256").write_text(digest + "  " + jar.name + "\n", encoding="utf-8")
+          print("Verified release JAR SHA-256:", digest)
+          PY
+      - name: Publish the beta release
+        run: |
+          gh release create v0.7.1 \
+            "build/libs/display-model-optimizer-0.7.1+mc26.3.jar" \
+            "build/libs/display-model-optimizer-0.7.1+mc26.3.jar.sha256" \
+            --repo "$GH_REPO" \
+            --target "$GITHUB_SHA" \
+            --title "Display Model Optimizer 0.7.1 — Settings crash fix (Beta)" \
+            --notes-file docs/releases/0.7.1.md \
+            --prerelease

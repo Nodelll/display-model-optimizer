@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent
 DEPS = ROOT / "build" / "deps"
 CLASSES = ROOT / "build" / "classes"
 TEST_CLASSES = ROOT / "build" / "test-classes"
-VERSION = "0.7.0+mc26.3"
+VERSION = "0.7.1+mc26.3"
 DEPENDENCIES = [
     ("fabric-loader.jar", "https://maven.fabricmc.net/net/fabricmc/fabric-loader/0.19.5/fabric-loader-0.19.5.jar",
      "93044e4dd46de5d8136701292f05e868da096d2c9fddb4793e4fdbcc63efc695"),
@@ -94,6 +94,8 @@ def main():
                             "dev.nodelll.displaymodeloptimizer.GitHubReleaseFeedTest"], check=True)
     subprocess.run(java() + ["-cp", str(TEST_CLASSES) + os.pathsep + str(CLASSES) + os.pathsep + classpath,
                             "dev.nodelll.displaymodeloptimizer.DisplayFrustumTest"], check=True)
+    subprocess.run(java() + ["-cp", str(TEST_CLASSES) + os.pathsep + str(CLASSES) + os.pathsep + classpath,
+                            "dev.nodelll.displaymodeloptimizer.GuiBackgroundTest"], check=True)
     output = ROOT / "build" / "libs" / ("display-model-optimizer-" + VERSION + ".jar")
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "w") as archive:

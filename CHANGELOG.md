@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1 — 2026-10-15
+
+- Fix the Mod Menu settings crash `IllegalStateException: Can only blur once per frame` on Minecraft 26.3 by letting the game extract the screen background once.
+- Retain widget rendering and all existing settings, rendering optimizations and optional integrations.
+- Add a regression check against the actual Minecraft screen wrapper, double-blur guard and 128 frame resets; run it in both Python and Gradle builds.
+
 ## 0.7.0 — 2026-10-15
 
 - Enable vanilla camera-frustum culling for item and block displays using their actual cached model bounds, including displays whose server width/height are zero.

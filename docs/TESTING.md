@@ -6,7 +6,7 @@ The current implementation targets Minecraft 26.3, Fabric Loader 0.19.5 or later
 
 Run `python3 build.py` with JDK 25. The build executes:
 
-| Check | Assertions in 0.7.0 |
+| Check | Assertions in 0.7.1 |
 | --- | ---: |
 | Draw lookup equivalence and fallback | 180346 |
 | Model cache ownership, lifetime and distance | 28 |
@@ -14,8 +14,11 @@ Run `python3 build.py` with JDK 25. The build executes:
 | Model bounds and actual Entity Culling scene checks | 9614 |
 | GitHub updates: version order, Minecraft compatibility, channels and malformed feeds | 33 |
 | Actual Minecraft frustum with cached model boxes, camera turns and custom-model extents | 236 |
+| Actual Minecraft screen background order, double-blur guard and 128 frame resets | 135 |
 
-GitHub Actions runs this build and publishes the resulting JAR as a workflow artifact.
+GitHub Actions runs this build and publishes the resulting JAR as a workflow artifact. The 0.7.1 release is published only after this build succeeds.
+
+`GuiBackgroundTest` reads the actual Minecraft 26.3 screen bytecode, checks that the vanilla wrapper extracts the background before the content, and exercises the real GUI render state's once-per-frame blur guard. Its optional first argument is a previous mod JAR; passing 0.7.0 reproduces the background-order regression.
 
 ## Additional offline verification
 
